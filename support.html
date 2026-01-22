@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Enomen | Help Center</title>
+    <link rel="icon" type="image/png" href="./resources/favicon.svg" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&amp;display=swap" rel="stylesheet" />
+    <meta content="Enomen | Help Center" property="og:title" />
+    <meta content="Enomen's Help Center answers a variety of frequently asked questions and offers a comprehensive support guide." property="og:description" />
+    <meta content="#B074D4" data-react-helmet="true" name="theme-color" />
+    <meta property="og:image" content="https://enomen.one/resources/embed.png" />
+    <meta property="og:url" content="https://enomen.one/support" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+
+
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/697271cd4e6a21197c2ff0fb/1jfjgp2b9';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+
+
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        html, body {
+            margin: 0; padding: 0;
+            font-family: 'Inter', sans-serif;
+            background: #0A0A0A;
+            color: #DDD;
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            user-select: none;
+            min-height: 100vh;
+            font-size: 15px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        body {
+            padding-top: 0;
+        }
+        body > main, body > section {
+            max-width: 960px; 
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+        }
+        a {
+            color: #B074D4;
+            text-decoration: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            font-size: 0.9rem;
+        }
+        a:hover, a:focus {
+            color: #925BB5;
+            outline: none;
+            text-decoration: none;
+        }
+        a.btn-primary:hover, a.btn-primary:focus,
+        a.btn-secondary:hover, a.btn-secondary:focus {
+            text-decoration: none;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: transparent;
+            z-index: 1000;
+            transition: background-color 0.3s ease, backdrop-filter 0.3s ease, top 0.3s ease-out;
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .navbar-container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-logo {
+            height: 40px;
+            margin-right: auto;
+            flex-shrink: 0;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 25px;
+            flex-grow: 1;
+            justify-content: center;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: max-content;
+        }
+
+        .nav-links a {
+            color: #DDD;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #B074D4;
+        }
+
+        .support-header {
+            background: #0A0A0A; 
+            color: #EEE;
+            text-align: center;
+            padding-top: var(--header-offset, 0px);
+            position: relative;
+            z-index: 1;
+            background-image: radial-gradient(circle at center top, rgba(176, 116, 212, 0.05) 0%, transparent 70%); 
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center;
+            min-height: 200px; 
+            padding-bottom: 1.5rem; 
+        }
+
+        .support-header h1 {
+            font-weight: 900;
+            font-size: clamp(2.2rem, 6vw, 3.5rem);
+            line-height: 1.1;
+            margin-bottom: 0.2rem;
+            color: #EEE;
+            letter-spacing: -0.035em;
+            margin-top: 0;
+        }
+
+        .support-header h1 span {
+            color: #B074D4;
+        }
+
+        .support-header p {
+            font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+            color: #AAA;
+            max-width: 600px;
+            margin: 0.2rem auto 0.4rem auto;
+            line-height: 1.4;
+        }
+
+        .header-bottom-divider { 
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(176, 116, 212, 0.5), transparent);
+            width: 80%; 
+            max-width: 900px; 
+            margin: 1rem auto 2rem auto; 
+            box-shadow: 0 0 10px rgba(176, 116, 212, 0.2); 
+        }
+
+        .support-container {
+            padding: 0 1rem 5rem 1rem; 
+            background: #0a0a0a;
+            user-select: none;
+            max-width: 960px; 
+            margin: 0 auto;
+        }
+
+        .support-content-area {
+            flex-grow: 1;
+            background: #121212;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .support-section {
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .support-section:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .support-icon-wrapper {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px; 
+            background-color: rgba(176, 116, 212, 0.25);
+            border: 1.5px solid #B074D4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .support-icon-wrapper .icon {
+            width: 34px;
+            height: 34px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #B074D4;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .support-section-title {
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: #EEE;
+            margin: 0;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .support-section-content {
+            font-weight: 400;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #BBB;
+        }
+        .support-section-content ul {
+            list-style: disc;
+            margin-left: 20px;
+            padding-left: 0;
+            margin-top: 10px;
+        }
+        .support-section-content ul li {
+            margin-bottom: 5px;
+        }
+
+        .support-section-content .faq-item:first-of-type {
+            margin-top: 25px; 
+        }
+
+        .faq-item {
+            background-color: #1A1A1A;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            cursor: pointer;
+            background-color: #1A1A1A;
+            color: #EEE;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background-color: #222222;
+        }
+
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            color: #BBB;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .faq-answer.open {
+            max-height: 200px; 
+            padding: 15px 20px;
+        }
+
+        .site-footer {
+            background: #121212;
+            padding: 3rem 1rem;
+            color: #AAA;
+            font-size: 0.9rem;
+            text-align: center;
+            border-top: 1px solid #222;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .footer-logo img {
+            height: 50px;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-text {
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links a {
+            color: #AAA;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #B074D4;
+        }
+
+        .footer-copyright {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: #777;
+        }
+
+        @media (max-width: 900px) {
+            .navbar-container {
+                flex-direction: column;
+                gap: 15px;
+                position: relative;
+            }
+            .navbar-logo {
+                margin-right: auto;
+                margin-left: 0;
+                width: 100%;
+                text-align: left;
+            }
+            .nav-links {
+                position: static;
+                transform: none;
+                flex-grow: 0;
+                justify-content: center;
+                gap: 15px;
+                flex-wrap: wrap;
+                width: 100%;
+            }
+
+            .support-content-area {
+                padding: 1.5rem;
+            }
+
+            .support-section {
+                padding-bottom: 1rem;
+                margin-bottom: 1rem;
+            }
+            .announcement-banner {
+                font-size: 0.9rem;
+                flex-direction: column;
+                gap: 5px;
+            }
+            .announcement-banner .payment-icons {
+                margin-left: 0;
+                margin-top: 5px;
+            }
+            .footer-links {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            .support-header {
+                padding-top: var(--total-header-height, 0px);
+            }
+        }
+        @media (max-width: 520px) {
+            .navbar-container {
+                padding: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar-container">
+        <a href="https://enomen.one" aria-label="Enomen Home">
+            <img src="https://enomen.one/resources/enomenn.svg" alt="Enomen Logo">
+        </a>
+        <ul class="nav-links">
+            <li><a href="https://enomen.one/#features">Features</a></li>
+            <li><a href="https://enomen.one/#products">Best Sellers</a></li>
+            <li><a href="https://enomen.one/#testimonials">Testimonials</a></li>
+            <li><a href="https://enomen.one/#faq">FAQ</a></li>
+            <li><a href="https://enomen.one/#join-us">Join Us</a></li>
+        </ul>
+    </div>
+</nav>
+
+<header class="support-header" role="banner">
+    <h1>Need <span>Support</span>?</h1>
+    <p>We're here to help! Find answers to common questions or reach out to our team.</p>
+</header>
+
+<div class="header-bottom-divider"></div>
+
+<main class="support-container" role="main" aria-label="Support Content">
+    <section class="support-content-area">
+        <article class="support-section" id="contact-us">
+            <div class="support-icon-wrapper" aria-hidden="true">
+                <i class="fa-solid fa-headset icon"></i>
+            </div>
+            <h2 class="support-section-title">Contact Us</h2>
+            <div class="support-section-content">
+                <p>Our support team is available to assist you with any questions or issues you might have regarding our services. Here are the best ways to get in touch:</p>
+                <ul>
+                    <li><strong>Discord Support:</strong> For the fastest assistance, please join our official Discord server and open a support ticket. Our team is most active there and can provide real-time help. <a href="https://enomen.one/discord" target="_blank">Join Our Discord Server</a></li>
+                    <li><strong>Live Chat:</strong> Enomen now offers live chat with a highly trained AI model to answer basic questions. However, our real staff team can still connect and take over at any point. To utilize live chat, you can open the purple icon in the bottom right of your screen on any Enomen web page, or, utilize this <a href="https://tawk.to/chat/697271cd4e6a21197c2ff0fb/1jfjgp2b9" target="_blank">direct link</a> to start a chat.</li>
+                    <li><strong>Email Support:</strong> For general inquiries or if you prefer email, you can reach us at <a href="mailto:support@enomen.one">support@enomen.one</a>. Please allow up to 24-48 hours for a response via email, especially during peak times. Email support is more difficult, especially for order related support, so please be as patient as possible.</li>
+                </ul>
+                <p>When contacting us, please provide as much detail as possible about your issue, including your Discord ID (if applicable), order number, and a clear description of the problem. This will help us assist you more efficiently.</p>
+            </div>
+        </article>
+
+        <article class="support-section" id="faq-section">
+            <div class="support-icon-wrapper" aria-hidden="true">
+                <i class="fa-solid fa-question-circle icon"></i>
+            </div>
+            <h2 class="support-section-title">Frequently Asked Questions</h2>
+            <div class="support-section-content">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Do you accept Debit/Credit Card?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We have been able to integrate a payment gateway that allows Debit/Credit Card, Apple Pay, Google Pay, and more. Join our <a href="https://enomen.one/discord" style="color: #B074D4;">Discord Server</a> and create a support ticket to pay with any method not specified on our shop checkout.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I get a refund if I change my mind?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>All sales are generally final. Refunds are only issued if required by law or in rare, specific cases at our sole discretion. Please review our <a href="https://enomen.one/terms#refunds-pricing">Terms of Use</a> for detailed information on our refund policy.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What payment methods do you accept?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We support a variety of convenient and secure payment methods to make checkout simple. On our shop page, you can purchase with Litecoin and Bitcoin. To pay with major credit and debit cards, Apple Pay, Google Pay, Venmo, or PayPal, you can join our <a href="https://enomen.one/discord" style="color: #B074D4;">Discord Server</a> and create a support ticket. If you encounter any issues during payment, our support team can provide step-by-step guidance to complete your purchase.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How long does it take for an order to be processed?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Some orders are processed instantly. For certain products like Discord Nitro, you'll need to open a ticket in our Discord server to receive your code, which is usually fulfilled within minutes during business hours. However, delivery information will be available in your payment confirmation email.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Is this service legit?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>YES! We are a legitimite service and have been around since 2023, but have resurfaced in 2025. We will never sell a service that we believe is not high enough for our standards. Customer satification is our #1 priority at Enomen, and we will continue to do so. If you're still doubting our legitimacy, you can view our feedback <a href="https://enomen.mysellauth.com/feedback">here</a>.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        I accidentally bought the wrong product. What do I do?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>If you purchase the wrong product, it's no big deal. Contact our support team immediately with your order details. If your product is delivered instantly, we are usually unable to cancel and issue refunds, depending on the product. However, for manual delivered products, we are able to cancel your order if it hasn't been redeemed yet.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What should I do if my payment fails?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Payment failures can occur for a variety of reasons, such as card deactivations, false fraud alerts, connection issues, bank restrictions, and more. If your payment doesn't go through, we recommend checking your card details to ensure there are no outgoing fraud alerts, along with checking for sufficient balance. If you have issues despite following these instructions, please contact our support team — we will assist with troubleshooting and ensuring your purchase goes through safely. </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I get notified when new products are added?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! To stay up to date with our latest releases and discounts, you can join our <a href="https://enomen.one/discord">Discord Server</a>. We regularly add new products, limited time offers, coupon codes, exclusive deals, and giveaways for new products.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I gift Discord Nitro to someone else?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The answer is YES! When you purchase a Discord Nitro code from us, they are redeemable by any user on Discord, as it is through a gift link. This means you can redeem it for yourself, or any other user you wish to send it to.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Do you offer discounts for bulk purchases?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! Depending on the product, we sometimes offer bulk discounts. If you’re interested in purchasing multiple accounts, or multiple of a product, check the product description or contact our support team. Some products have a Buy 10 = 20% Off, and others may be Buy 20 = 20% off. However, not all products are eligible for bulk pricing. If you don't see bulk pricing in a product description, feel free to contact our support team to arrange a custom bulk order.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I request a custom product or special order?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Dependent on the request, we accept custom requests for products or bundles. Contact our support team with your request, and we’ll let you know if it’s possible and provide pricing or delivery details.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Is there a limit to how many Nitro codes I can purchase?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>There is no set limit on how many nitro codes you can purchase. However, if our stock doesn't account for it, we will not be able to process the order. You can "stack" nitro codes on your account to have as much nitro as you'd like.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What are your working hours?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>While we don't have set working hours at Enomen, we are oftentimes most available from 9am-9pm (EST) as that is the timezone most of our staff operate in. However, our staff team may be available outside of those hours.</p>
+                    </div>
+                </div>
+
+                                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I transfer my warranty to another account?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>For products with lifetime warranties, we are able to transfer your purchase history to a new account. This way, you can keep your warranty despite using a new account. To update your account information to a new account, contact our support team.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Do your Nitro codes expire?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, all Discord Nitro gift links have an expiration date. However, once you've redeemed the gift, you will keep your nitro for the duration you purchased it for. It's crucial to redeem your code as soon as possible after delivery. Our staff members have been trained to send screenshots of validity at the time of delivery, and if the code is not redeemed within the code timeframe, you will NOT be entitled to a refund.</p>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </section>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+    <div class="footer-content">
+        <div class="footer-logo">
+            <img src="https://enomen.one/resources/enomenn.svg" alt="Enomen Logo">
+        </div>
+        <p class="footer-text">Premium digital products, seamless service, and trusted results. Fast delivery, dedicated support, and hassle-free payments.</p>
+        <ul class="footer-links">
+            <li><a href="https://enomen.one">Home</a></li>
+            <li><a href="https://enomen.one/terms">Terms of Use</a></li>
+            <li><a href="https://enomen.one/shop">Shop</a></li>
+            <li><a href="https://enomen.one/discord">Discord Server</a></li>
+            <li><a href="mailto:support@enomen.one" style="color: #B074D4;">support@enomen.one</a></li>
+        </ul>
+        <p class="footer-copyright">&copy; <span id="current-year"></span> Enomen. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+
+    const navbar = document.querySelector('.navbar');
+    let lastScrollY = window.scrollY;
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 0) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+        lastScrollY = window.scrollY;
+    });
+
+    const setHeaderOffset = () => {
+        const navbarHeight = navbar.offsetHeight;
+        document.documentElement.style.setProperty('--header-offset', `${navbarHeight + 40}px`);
+        document.documentElement.style.setProperty('--total-header-height', `${navbarHeight}px`);
+    };
+
+    window.addEventListener('resize', setHeaderOffset);
+    window.addEventListener('DOMContentLoaded', setHeaderOffset);
+
+    document.querySelectorAll('.faq-item').forEach(item => {
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+
+        question.addEventListener('click', () => {
+            const isOpen = answer.classList.contains('open');
+
+            document.querySelectorAll('.faq-item .faq-answer.open').forEach(openAnswer => {
+                if (openAnswer !== answer) {
+                    openAnswer.classList.remove('open');
+                    openAnswer.previousElementSibling.classList.remove('active');
+                }
+            });
+
+            answer.classList.toggle('open');
+            question.classList.toggle('active');
+        });
+    });
+
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
