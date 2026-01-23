@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Enomen | Payment Methods</title>
+
+<link rel="icon" type="image/png" href="https://enomen.one/resources/favicon.png" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <meta content="Enomen | Payment Methods" property="og:title" />
+  <meta content="Compare supported payment methods, fees, and checkout limits when using alternative payment methods supported by Enomen." property="og:description" />
+  <meta content="#B074D4" data-react-helmet="true" name="theme-color" />
+  <meta property="og:image" content="https://enomen.one/resources/enomenn.svg" />
+  <meta property="og:url" content="https://enomen.one" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: #0A0A0A;
+    color: #DDD;
+}
+
+/* NAVBAR */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: center;
+    z-index: 1000;
+    transition: background-color .3s ease, backdrop-filter .3s ease;
+}
+.navbar.scrolled {
+    background: rgba(10,10,10,0.7);
+    backdrop-filter: blur(8px);
+}
+.navbar-container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+}
+.navbar img { height: 40px; }
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0 auto;
+    padding: 0;
+}
+.nav-links a {
+    color: #DDD;
+    font-weight: 600;
+    text-decoration: none;
+}
+.nav-links a:hover { color: #B074D4; }
+
+/* HEADER */
+.page-header {
+    padding-top: 120px;
+    padding-bottom: 2rem;
+    text-align: center;
+    background-image: radial-gradient(circle at top, rgba(176,116,212,.08), transparent 70%);
+}
+.page-header h1 {
+    font-size: clamp(2.2rem, 6vw, 3.2rem);
+    font-weight: 900;
+    margin: 0;
+}
+.page-header span { color: #B074D4; }
+.page-header p {
+    color: #AAA;
+    max-width: 700px;
+    margin: .8rem auto 0;
+}
+
+/* TABLE */
+.table-wrapper {
+    max-width: 1400px;
+    margin: 2rem auto 5rem;
+    padding: 0 1rem;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #121212;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+thead {
+    background: #161616;
+}
+
+th, td {
+    padding: 14px 16px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-size: 0.95rem;
+}
+
+th {
+    font-weight: 800;
+    color: #EEE;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.payment-name {
+    text-align: left;
+    font-weight: 700;
+    color: #EEE;
+}
+
+.recommended-row {
+    background: rgba(176,116,212,0.07);
+    box-shadow: inset 0 0 0 1px rgba(176,116,212,.35);
+}
+
+.recommended-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #B074D4;
+    color: #000;
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 4px 8px;
+    border-radius: 999px;
+    margin-left: 8px;
+}
+
+.recommended-note {
+    display: block;
+    font-size: 0.75rem;
+    color: #B074D4;
+    margin-top: 4px;
+    font-weight: 600;
+}
+
+        .site-footer {
+            background: #121212;
+            padding: 3rem 1rem;
+            color: #AAA;
+            font-size: 0.9rem;
+            text-align: center;
+            border-top: 1px solid #222;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .footer-logo img {
+            height: 50px;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-text {
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links a {
+            color: #AAA;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+
+        .footer-links a:hover {
+            color: #B074D4;
+        }
+
+        footer a {
+  text-decoration: none;
+}
+
+
+        .footer-copyright {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: #777;
+        }
+
+        
+
+@media (max-width: 700px) {
+    th, td {
+        padding: 12px;
+        font-size: .85rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="navbar-container">
+        <a href="https://enomen.one">
+            <img src="https://enomen.one/resources/enomenn.svg" alt="Enomen Logo">
+        </a>
+        <ul class="nav-links">
+            <li><a href="https://enomen.one/#features">Features</a></li>
+            <li><a href="https://enomen.one/#products">Best Sellers</a></li>
+            <li><a href="https://enomen.one/#testimonials">Testimonials</a></li>
+            <li><a href="https://enomen.one/#faq">FAQ</a></li>
+            <li><a href="https://enomen.one/#join-us">Join Us</a></li>
+        </ul>
+    </div>
+</nav>
+
+<header class="page-header">
+    <h1>Payment <span>Methods</span></h1>
+    <p>Compare supported payment methods, fees, and checkout limits. Some options may have longer processing times compared to others. Additionally, some options may contain KYC (Know Your Customer) verification.</p>
+</header>
+
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Payment Method</th>
+<th>Fee Structure</th>
+<th>Minimum Fee</th>
+<th>Min Checkout</th>
+<th>Max Checkout</th>
+</tr>
+</thead>
+<tbody>
+
+<tr class="recommended-row">
+<td class="payment-name">
+Wert.io
+<span class="recommended-badge"><i class="fa-solid fa-star"></i> Recommended</span>
+<span class="recommended-note">No KYC • Debit/Credit • Google Pay • Apple Pay</span>
+</td>
+<td>7% + $0.50 USD</td>
+<td>$0.99 USD</td>
+<td>$2.99 USD</td>
+<td>$5,000 USD</td>
+</tr>
+
+<tr><td class="payment-name">iDEAL</td><td>7% + $0.50 USD</td><td>$2.99 USD</td><td>$4.99 USD</td><td>$299.99 USD</td></tr>
+<tr><td class="payment-name">Coinbase Pay (EUR)</td><td>5% + $0.50 USD</td><td>$1.99 USD</td><td>$9.99 USD</td><td>$9,999.00 USD</td></tr>
+<tr><td class="payment-name">Stripe (EU)</td><td>6% + $0.30 USD</td><td>$1.49 USD</td><td>$3.99 USD</td><td>$10,500.00 USD</td></tr>
+<tr><td class="payment-name">PayPal (EU)</td><td>5% + $0.50 USD</td><td>$1.99 USD</td><td>$29.99 USD</td><td>$5,000.00 USD</td></tr>
+<tr><td class="payment-name">Onramp.Money</td><td>5% + $1.00 USD</td><td>$1.99 USD</td><td>$19.99 USD</td><td>$999.99 USD</td></tr>
+<tr><td class="payment-name">Coinbase Pay (USD)</td><td>5% + $0.50 USD</td><td>$1.99 USD</td><td>$4.99 USD</td><td>$2,999.00 USD</td></tr>
+<tr><td class="payment-name">Coinbase Pay (GBP)</td><td>5% + $0.50 USD</td><td>$1.99 USD</td><td>$9.99 USD</td><td>$9,999.00 USD</td></tr>
+<tr><td class="payment-name">Bank Transfer</td><td>5% + $2.50 USD</td><td>$3.50 USD</td><td>$9.99 USD</td><td>$2,500.00 USD</td></tr>
+<tr><td class="payment-name">Ramp</td><td>5% + $0.30 USD</td><td>$2.99 USD</td><td>$9.99 USD</td><td>$4,999.00 USD</td></tr>
+<tr><td class="payment-name">Revolut</td><td>3% + $0.30 USD</td><td>$1.99 USD</td><td>$9.99 USD</td><td>$4,999.00 USD</td></tr>
+<tr><td class="payment-name">Transak</td><td>5% + $1.00 USD</td><td>$2.99 USD</td><td>$3.49 USD</td><td>$299,999.00 USD</td></tr>
+<tr><td class="payment-name">Unlimit</td><td>5% + $1.00 USD</td><td>$1.99 USD</td><td>$9.99 USD</td><td>$2,999.00 USD</td></tr>
+<tr><td class="payment-name">Bitcoin</td><td>2% + $0.10 USD</td><td>$0.3 USD</td><td>$9.99 USD</td><td>$500.00 USD</td></tr>
+<tr><td class="payment-name">Litecoin</td><td>2% + $0.10 USD</td><td>$0.30 USD</td><td>$1.99 USD</td><td>$500.00 USD</td></tr>
+<tr><td class="payment-name">Binance</td><td>5% + $0.50 USD</td><td>$1.99 USD</td><td>$19.99 USD</td><td>$5,000.00 USD</td></tr>
+<tr><td class="payment-name">Bancontact</td><td>7% + $0.50</td><td>$1.99 USD</td><td>$4.00 USD</td><td>$299.99 USD</td></tr>
+<tr><td class="payment-name">Multibanco</td><td>7% + $0.50</td><td>$1.99 USD</td><td>$3.49 USD</td><td>$299.99 USD</td></tr>
+<tr><td class="payment-name">Przelewy24</td><td>7% + $0.50</td><td>$2.99 USD</td><td>$2.99 USD</td><td>$299.99 USD</td></tr>
+<tr><td class="payment-name">EPS</td><td>7% + $0.50 USD</td><td>$2.99 USD</td><td>$4.99 USD</td><td>$299.99 USD</td></tr>
+<tr><td class="payment-name">USDT (ETH)</td><td>2% + $0.10 USD</td><td>$0.20 USD</td><td>$0.90 USD</td><td>$50,000.00 USD</td></tr>
+<tr><td class="payment-name">Stripe (USD)</td><td>6% + $0.30</td><td>$0.99 USD</td><td>$2.99 USD</td><td>$10,500.00 USD</td></tr>
+<tr><td class="payment-name">PayPal (USA)</td><td>3% + $0.50</td><td>$1.99 USD</td><td>$9.99 USD</td><td>$1,999.00 USD</td></tr>
+<tr><td class="payment-name">CashApp</td><td>3% + $1.00 USD</td><td>$1.99 USD</td><td>$29.99 USD</td><td>$3,999 USD</td></tr>
+<tr><td class="payment-name">Coinbase Pay</td><td>5% + $0.50</td><td>$1.99 USD</td><td>$9.99 USD</td><td>$9,999.00 USD</td></tr>
+<tr><td class="payment-name">Robinhood</td><td>5% + $0.50</td><td>$2.99 USD</td><td>$9.99 USD</td><td>$1,499.99 USD</td></tr>
+<tr><td class="payment-name">PIX</td><td>5% + $0.50</td><td>$2.99 USD</td><td>$29.99 USD</td><td>$500.00 USD</td></tr>
+<tr><td class="payment-name">AstroPay</td><td>5% + $0.50</td><td>$2.99 USD</td><td>$29.99 USD</td><td>$500.00 USD</td></tr>
+<tr><td class="payment-name">Faster Payment Bank Transfer</td><td>5% + $0.50</td><td>$2.99 USD</td><td>$19.99 USD</td><td>$500.00 USD</td></tr>
+<tr><td class="payment-name">Open  Banking</td><td>5% + $0.50</td><td>$2.99 USD</td><td>$29.99 USD</td><td>$500.00 USD</td></tr>
+<tr><td class="payment-name">Venmo</td><td>5% + $0.50</td><td>$1.99 USD</td><td>$19.99 USD</td><td>$5,000.00 USD</td></tr>
+<tr><td class="payment-name">Interac</td><td>2% + $5.00</td><td>$5.00 USD</td><td>$70.00 USD</td><td>$5,000.00 USD</td></tr>
+<tr><td class="payment-name">Mercuryo</td><td>4% + $0.30</td><td>$1.99 USD</td><td>$29.99 USD</td><td>$299.99 USD</td></tr>
+<tr><td class="payment-name">Guardarian (USD)</td><td>6% + $1.50</td><td>$2.49 USD</td><td>$19.99 USD</td><td>$50,000.00 USD</td></tr>
+<tr><td class="payment-name">Guardarian (EUR)</td><td>6% + $1.50</td><td>$2.49 USD</td><td>$19.99 USD</td><td>$50,000.00 USD</td></tr>
+
+</tbody>
+</table>
+</div>
+
+<footer class="site-footer" role="contentinfo">
+    <div class="footer-content">
+        <div class="footer-logo">
+            <img src="https://enomen.one/resources/enomenn.svg" alt="Enomen Logo">
+        </div>
+        <p class="footer-text">Your trusted source for premium digital services — fast, secure, and reliable.</p>
+        <ul class="footer-links">
+            <li><a href="https://enomen.one">Home</a></li>
+            <li><a href="https://enomen.one/terms">Terms of Use</a></li>
+            <li><a href="https://enomen.one/shop">Shop</a></li>
+            <li><a href="https://enomen.one/discord">Discord Server</a></li>
+            <li><a href="https://enomen.one/support">Help Center</a></li>
+            <li><a href="mailto:support@enomen.one" style="color: #B074D4;">support@enomen.one</a></li>
+        </ul>
+        <p class="footer-copyright">&copy; <span id="current-year">2026</span> Enomen. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+const navbar = document.querySelector('.navbar');
+window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 0);
+});
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
