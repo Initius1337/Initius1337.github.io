@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Enomen | Terms of Use</title>
+    <link rel="icon" type="image/png" href="./resources/favicon.svg" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&amp;display=swap" rel="stylesheet" />
+    <meta content="Enomen | Terms of Use" property="og:title" />
+    <meta content="Review the Terms of Use for Enomen services." property="og:description" />
+    <meta content="#B074D4" data-react-helmet="true" name="theme-color" />
+    <meta property="og:image" content="https://enomen.one/resources/embed.png" />
+    <meta property="og:url" content="https://nitro.enomen.one/terms" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        html, body {
+            margin: 0; padding: 0;
+            font-family: 'Inter', sans-serif;
+            background: #0A0A0A;
+            color: #DDD;
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            user-select: none;
+            min-height: 100vh;
+            font-size: 15px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        body {
+            padding-top: 0;
+        }
+        body > main, body > section {
+            max-width: 960px; 
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+        }
+        a {
+            color: #B074D4;
+            text-decoration: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            font-size: 0.9rem;
+        }
+        a:hover, a:focus {
+            color: #925BB5;
+            outline: none;
+            text-decoration: none;
+        }
+        a.btn-primary:hover, a.btn-primary:focus,
+        a.btn-secondary:hover, a.btn-secondary:focus {
+            text-decoration: none;
+        }
+
+        /* Navbar styles from first file */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: transparent;
+            z-index: 1000;
+            transition: background-color 0.3s ease, backdrop-filter 0.3s ease, top 0.3s ease-out;
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(10, 10, 10, 0.7); /* More transparent */
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .navbar-container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-logo {
+            height: 40px;
+            margin-right: auto;
+            flex-shrink: 0;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 25px;
+            flex-grow: 1;
+            justify-content: center;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: max-content;
+        }
+
+        .nav-links a {
+            color: #DDD;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 6px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-links a:hover {
+            color: #B074D4;
+            background-color: rgba(176, 116, 212, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(176, 116, 212, 0.2);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #B074D4;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .terms-header {
+            background: #0A0A0A; 
+            color: #EEE;
+            text-align: center;
+            padding-top: var(--header-offset, 0px);
+            position: relative;
+            z-index: 1;
+            background-image: radial-gradient(circle at center top, rgba(176, 116, 212, 0.05) 0%, transparent 70%); 
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center;
+            min-height: 200px; 
+            padding-bottom: 1.5rem; 
+        }
+
+        .terms-header h1 {
+            font-weight: 900;
+            font-size: clamp(2.2rem, 6vw, 3.5rem);
+            line-height: 1.1;
+            margin-bottom: 0.2rem;
+            color: #EEE;
+            letter-spacing: -0.035em;
+            margin-top: 0;
+        }
+
+        .terms-header h1 span {
+            color: #B074D4;
+        }
+
+        .terms-header p {
+            font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+            color: #AAA;
+            max-width: 600px;
+            margin: 0.2rem auto 0.4rem auto;
+            line-height: 1.4;
+        }
+
+        .terms-header .last-updated {
+            font-size: 0.8rem;
+            color: #777;
+            margin-top: 0.5rem;
+        }
+
+        .header-bottom-divider { 
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(176, 116, 212, 0.5), transparent);
+            width: 80%; 
+            max-width: 900px; 
+            margin: 1rem auto 2rem auto; 
+            box-shadow: 0 0 10px rgba(176, 116, 212, 0.2); 
+        }
+
+        .terms-container {
+            padding: 0 1rem 5rem 1rem; 
+            background: #0a0a0a;
+            user-select: none;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .terms-layout {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .terms-sidebar {
+            flex: 0 0 250px;
+            background: #121212;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: calc(var(--total-header-height, 0px) + 20px); 
+            height: fit-content;
+            max-height: calc(100vh - var(--total-header-height, 0px) - 40px);
+            overflow-y: auto;
+        }
+
+        .terms-sidebar h2 {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #EEE;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.02em;
+        }
+
+        .terms-sidebar .toc-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .terms-sidebar .toc-nav li {
+            margin-bottom: 0.7rem;
+        }
+
+        .terms-sidebar .toc-nav a {
+            color: #BBB;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease, transform 0.2s ease;
+            display: block;
+            padding: 5px 0;
+        }
+
+        .terms-sidebar .toc-nav a:hover,
+        .terms-sidebar .toc-nav a.active {
+            color: #B074D4;
+            transform: translateX(5px);
+        }
+
+        .terms-content-area {
+            flex-grow: 1;
+            background: #121212;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .terms-section {
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .terms-section:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .terms-icon-wrapper {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px; 
+            background-color: rgba(176, 116, 212, 0.25);
+            border: 1.5px solid #B074D4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .terms-icon-wrapper .icon {
+            width: 34px;
+            height: 34px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #B074D4;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .terms-section-title {
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: #EEE;
+            margin: 0;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .terms-section-content {
+            font-weight: 400;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #BBB;
+        }
+        .terms-section-content ul {
+            list-style: disc;
+            margin-left: 20px;
+            padding-left: 0;
+            margin-top: 10px;
+        }
+        .terms-section-content ul li {
+            margin-bottom: 5px;
+        }
+
+        /* Enhanced Footer Styles from first file */
+        .site-footer {
+            background: #0A0A0A;
+            padding: 4rem 1rem 2rem;
+            color: #AAA;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(176, 116, 212, 0.2);
+            position: relative;
+            overflow: hidden;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            text-align: left;
+        }
+
+        .footer-logo {
+            height: 45px;
+            margin-bottom: 0.5rem;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-tagline {
+            margin: 0;
+            line-height: 1.5;
+            color: #BBB;
+            max-width: 300px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            color: #AAA;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links a:hover {
+            background: rgba(176, 116, 212, 0.2);
+            color: #B074D4;
+            transform: translateY(-2px);
+            border-color: rgba(176, 116, 212, 0.3);
+        }
+
+        .footer-links-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-column-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #EEE;
+            margin: 0 0 0.5rem 0;
+            letter-spacing: 0.02em;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+
+        .footer-links a {
+            color: #AAA;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            padding: 0.2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-links a:hover {
+            color: #B074D4;
+            transform: translateX(5px);
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #B074D4;
+            transition: width 0.3s ease;
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-copyright {
+            margin: 0;
+            font-size: 0.85rem;
+            color: #777;
+        }
+
+        .payment-badges {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .payment-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            color: #AAA;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .payment-badge:hover {
+            background: rgba(176, 116, 212, 0.2);
+            color: #B074D4;
+            transform: translateY(-2px);
+            border-color: rgba(176, 116, 212, 0.3);
+        }
+
+        @media (max-width: 900px) {
+            .navbar-container {
+                flex-direction: column;
+                gap: 15px;
+                position: relative;
+            }
+            .navbar-logo {
+                margin-right: auto;
+                margin-left: 0;
+                width: 100%;
+                text-align: left;
+            }
+            .nav-links {
+                position: static;
+                transform: none;
+                flex-grow: 0;
+                justify-content: center;
+                gap: 15px;
+                flex-wrap: wrap;
+                width: 100%;
+            }
+            .terms-layout {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .terms-sidebar {
+                position: static;
+                max-height: none;
+                width: auto;
+                flex: none;
+            }
+
+            .terms-content-area {
+                padding: 1.5rem;
+            }
+
+            .terms-section {
+                padding-bottom: 1rem;
+                margin-bottom: 1rem;
+            }
+            
+            /* Footer responsiveness */
+            .footer-main {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            
+            .footer-links-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+            
+            .footer-brand {
+                text-align: center;
+                align-items: center;
+            }
+            
+            .footer-tagline {
+                max-width: 100%;
+            }
+            
+            .terms-header {
+                padding-top: var(--total-header-height, 0px);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .footer-links-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .site-footer {
+                padding: 3rem 1rem 1.5rem;
+            }
+        }
+        
+        @media (max-width: 520px) {
+            .navbar-container {
+                padding: 0 10px;
+            }
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar-container">
+        <a href="https://enomen.one" aria-label="Enomen Home">
+            <img src="https://enomen.one/resources/enomenn.svg" alt="Enomen Logo" class="navbar-logo">
+        </a>
+        <ul class="nav-links">
+            <li><a href="https://enomen.one/#features">Features</a></li>
+            <li><a href="https://enomen.one/#products">Products</a></li>
+            <li><a href="https://enomen.one/#testimonials">Testimonials</a></li>
+            <li><a href="https://enomen.one/#faq">FAQ</a></li>
+            <li><a href="https://enomen.one/#infocard">Join Us</a></li>
+        </ul>
+    </div>
+</nav>
+
+<header class="terms-header" role="banner">
+    <h1>Terms of <span>Service</span></h1>
+    <p>Please review these terms thoroughly before using our services.</p>
+    <p class="last-updated">Last Updated: July 17, 2025</p>
+</header>
+
+<div class="header-bottom-divider"></div>
+
+<main class="terms-container" role="main" aria-label="Terms of Use Content">
+    <div class="terms-layout">
+        <aside class="terms-sidebar">
+            <h2>Table of Contents</h2>
+            <nav class="toc-nav">
+                <ul>
+                    <li><a href="#introduction">1. Introduction</a></li>
+                    <li><a href="#eligibility">2. Eligibility</a></li>
+                    <li><a href="#account-responsibility">3. Account Responsibility</a></li>
+                    <li><a href="#purchases-payments">4. Purchases & Payments</a></li>
+                    <li><a href="#service-usage">5. Service Usage & Conduct</a></li>
+                    <li><a href="#service-delivery">6. Service Delivery</a></li>
+                    <li><a href="#refunds-pricing">7. Refunds & Pricing</a></li>
+                    <li><a href="#third-party-services">8. Third-Party Services</a></li>
+                    <li><a href="#data-collection">9. Data Collection & Privacy</a></li>
+                    <li><a href="#intellectual-property">10. Intellectual Property</a></li>
+                    <li><a href="#disclaimers-liability">11. Disclaimers & Limitation of Liability</a></li>
+                    <li><a href="#indemnification">12. Indemnification</a></li>
+                    <li><a href="#force-majeure">13. Force Majeure</a></li>
+                    <li><a href="#termination">14. Termination</a></li>
+                    <li><a href="#warnings-enforcement">15. Warnings & Enforcement</a></li>
+                    <li><a href="#changes-to-terms">16. Changes to Terms</a></li>
+                    <li><a href="#governing-law">17. Governing Law</a></li>
+                    <li><a href="#contact-information">18. Contact Information</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+<section class="terms-content-area">
+    <article class="terms-section" id="introduction">
+        <div class="terms-icon-wrapper" aria-hidden="true">
+            <i class="fa-solid fa-file-contract icon"></i>
+        </div>
+        <h2 class="terms-section-title">Introduction</h2>
+        <div class="terms-section-content">
+            <p>Welcome to Enomen (referred to as "we," "us," or "our"). These Terms of Use ("Terms") govern your access to and use of our services offered through enomen.one, including but not limited to our Discord-based account generation tools. Our services encompass a range of digital account creation solutions.</p>
+            <p>By using Enomen, you agree to comply with and be bound by these Terms. If you do not agree, please refrain from using the Service.</p>
+        </div>
+    </article>
+
+    <article class="terms-section" id="eligibility">
+        <div class="terms-icon-wrapper" aria-hidden="true">
+            <i class="fa-solid fa-user-check icon"></i>
+        </div>
+        <h2 class="terms-section-title">Eligibility</h2>
+        <div class="terms-section-content">
+            <ul>
+                <li>You must be at least 13 years old to use Enomen.</li>
+                <li>By accessing the Service, you represent that you meet this minimum age requirement.</li>
+                <li>You warrant that you comply with all applicable laws in your jurisdiction.</li>
+                <li>You are responsible for understanding and following these laws.</li>
+            </ul>
+        </div>
+    </article>
+
+    <article class="terms-section" id="account-responsibility">
+        <div class="terms-icon-wrapper" aria-hidden="true">
+            <i class="fa-solid fa-key icon"></i>
+        </div>
+        <h2 class="terms-section-title">Account Responsibility</h2>
+        <div class="terms-section-content">
+            <ul>
+                <li>You are responsible for maintaining the confidentiality of your Discord account credentials.</li>
+                <li>Any activity under your account is your sole responsibility.</li>
+            </ul>
+        </div>
+    </article>
+
+    <article class="terms-section" id="purchases-payments">
+        <div class="terms-icon-wrapper" aria-hidden="true">
+            <i class="fa-solid fa-dollar-sign icon"></i>
+        </div>
+        <h2 class="terms-section-title">Purchases & Payments</h2>
+        <div class="terms-section-content">
+            <ul>
+                <li>Voucher codes used for deposits are single-use and non-transferable.</li>
+                <li>Payments are processed via trusted third-party providers such as Stripe, Square, Discord payment systems, and SellAuth.</li>
+                <li>We do not store or have access to your payment information.</li>
+                <li>By using the service, users agree to receive transactional and administrative communications related to their account.</li>
+            </ul>
+        </div>
+    </article>
+
+    <article class="terms-section" id="service-usage">
+        <div class="terms-icon-wrapper" aria-hidden="true">
+            <i class="fa-solid fa-gavel icon"></i>
+        </div>
+        <h2 class="terms-section-title">Service Usage & Conduct</h2>
+        <div class="terms-section-content">
+            <ul>
+                <li>We reserve the right to blacklist any user at any time for any reason.</li>
+                <li>We reserve the right to modify or discontinue any part of the Service without prior notice.</li>
+                <li>Access to some features requires joining our official Discord server.</li>
+                <li>Access to some features requires a private whitelist.</li>
+                <li>We may revoke your access if you violate these Terms or server rules.</li>
+                <li>Exploitation or abuse of the Service is prohibited, including but not limited to automation, API misuse, and macros.</li>
+                <li>Attempting to bypass security or anti-abuse measures is forbidden.</li>
+                <li>Sharing, reselling, or distributing access to generated accounts without explicit permission is not allowed.</li>
+                <li>Harassment, threats, or impersonation of other users or staff is prohibited.</li>
+                <li>If banned from the Discord server, you forfeit any remaining account balance without refund.</li>
+            </ul>
+        </div>
+    </article>
+
+    <article class="terms-section" id="service-delivery">
+        <div class="terms-icon-wrapper" aria-hidden="true">
+            <i class="fa-solid fa-truck-fast icon"></i>
+        </div>
+        <h2 class="terms-section-title">Service Delivery</h2>
+        <div class="terms-section-content">
+            <ul>
+                <li>Generating accounts is handled through an automated system. Other products purchased from Enomen's storefront may be delivered manually to ensure verification.</li>
+                <li>Users may not engage in spam, illegal activity, or violate any third-party platform's terms. Abuse or misuse of the service may result in suspension.</li>
+                <li>We may add, modify, or remove features at any time without notice. Temporary downtimes may occur for maintenance or unexpected issues.</li>
+            </ul>
+        </div>
+    </article>
+
+    <article class="terms-section" id="refunds-pricing">
+        <div class="terms-icon-wrapper" aria-hidden="true">
+            <i class="fa-solid fa-money-bill-transfer icon"></i>
+        </div>
+        <h2 class="terms-section-title">Refunds & Pricing</h2>
+        <div class="terms-section-content">
+            <ul>
+                <li>All sales are final.</li>
+                <li>Refunds will only be issued if required by law.</li>
+                <li>Refunds may be considered on a rare, case-by-case basis at our sole discretion.</li>
+                <li>We reserve the right to change pricing at any time without prior notice.</li>
+            </ul>
+        </div>
+    </article>
+
+    <article class="terms-section" id="third-party-services">
+        <div class="terms-icon-wrapper" aria-hidden="true">
+            <i class="fa-solid fa-handshake icon"></i>
+        </div>
+        <h2 class="terms-section-title">Third-Party Services</h2>
+        <div class="terms-section-content">
+            <ul>
+                <li>We use trusted third-party platforms for payment and account fulfillment. We are not responsible for issues originating from these services.</li>
+                <li>Delivery times may vary based on availability. While we aim to fulfill all orders promptly, delays may occur if resources are temporarily unavailable. If we are unable to deliver your order within a reasonable timeframe, we reserve the right to issue a full refund at our discretion.</li>
+            </ul>
+        </div>
+    </article>
+
+    <article class="terms-section" id="data-collection">
+        <div class="terms-icon-wrapper" aria-hidden="true">
+            <i class="fa-solid fa-database icon"></i>
+        </div>
+        <h2 class="terms-section-title">Data Collection & Privacy</h2>
+        <div class="terms-section-content">
+            <ul>
+                <li>We collect information including your Discord ID, username, discriminator, account creation date, server join date, user avatar, and occasionally other details from your Discord profile.</li>
+                <li>We store purchase history, voucher redemption records, account generation logs</li>
+                <li>Moderation logs such as warnings, kicks, bans, suspensions, and other disciplinary actions.</li>
+                <li>Records of how you joined our Discord server or service.</li>
+                <li>During purchase, SellAuth collects your IP address and email address. We do not access this information, but it is however collected.</li>
+                <li>When you visit our website, your IP address and geolocation data are naturally collected by the website infrastructure itself. We do not access or use this information for any purpose.</li>
+                <li>We do not sell or share your personal data with third parties.</li>
+                <li>All data is stored securely on our VPS and databases using industry-standard protections.</li>
+                <li>We may collect device and browser information, such as device type, operating system, and browser version, to optimize and secure our services.</li>
+                <li>Error and crash reports may be collected to identify and fix issues in our systems.</li>
+                <li>Records of communications, such as support tickets or account-related messages, may be stored for reference and quality assurance.</li>
+                <li>Data may be monitored for suspicious activity, fraud prevention, or violations of our Terms of Service.</li>
+                <li>We may use third-party integrations, such as Discord APIs, which could collect additional information needed to provide our services.</li>
+                <li>We use various logging systems to detect suspicious and abusive behavior.</li>
+            </ul>
+        </div>
+    </article>
+</section>
+
+    </div>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+    <div class="footer-content">
+        <div class="footer-main">
+            <div class="footer-brand">
+                <img src="https://enomen.one/resources/enomenn.svg" alt="Enomen Logo" class="footer-logo">
+                <p class="footer-tagline">Your trusted source for premium digital services — fast, secure, and reliable.</p>
+                <div class="social-links">
+                    <a href="https://enomen.one/discord" aria-label="Join our Discord" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    <a href="mailto:support@enomen.one" aria-label="Contact us via email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-links-container">
+                <div class="footer-column">
+                    <h3 class="footer-column-title">Products</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://enomen.one/#products">Discord Nitro</a></li>
+                        <li><a href="https://enomen.one/#products">VPN Accounts</a></li>
+                        <li><a href="https://enomen.one/#products">Social Accounts</a></li>
+                        <li><a href="https://enomen.one/shop">All Products</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-column-title">Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://enomen.one/discord">Help Center</a></li>
+                        <li><a href="https://enomen.one/terms">Terms of Use</a></li>
+                        <li><a href="mailto:support@enomen.one">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-column-title">Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://enomen.one/terms">Terms of Use</a></li>
+                        <li><a href="https://enomen.one/#testimonials">Testimonials</a></li>
+                        <li><a href="https://enomen.one/#features">Why Enomen</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p class="footer-copyright">&copy; 2025 Enomen. All rights reserved.</p>
+            <div class="payment-badges">
+                <div class="payment-badge" title="Credit Cards">
+                    <i class="fa-solid fa-credit-card"></i>
+                </div>
+                <div class="payment-badge" title="Apple Pay">
+                    <i class="fa-brands fa-cc-apple-pay"></i>
+                </div>
+                <div class="payment-badge" title="Google Pay">
+                    <i class="fa-brands fa-google-pay"></i>
+                </div>
+                <div class="payment-badge" title="Bitcoin">
+                    <i class="fa-brands fa-bitcoin"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    const navbar = document.querySelector('.navbar');
+    const body = document.body;
+
+    function setBodyPadding() {
+        requestAnimationFrame(() => {
+            const navbarHeight = navbar.offsetHeight;
+            body.style.paddingTop = navbarHeight + 'px';
+            // Update CSS variables for other elements
+            document.documentElement.style.setProperty('--total-header-height', `${navbarHeight}px`);
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', setBodyPadding);
+    window.addEventListener('resize', setBodyPadding);
+
+    window.addEventListener('scroll', function() {
+        const scrollY = window.scrollY;
+
+        if (scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    document.querySelectorAll('.toc-nav a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+                const navbarHeight = navbar.offsetHeight;
+                const offsetPosition = targetElement.offsetTop - navbarHeight - 20;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+
+                document.querySelectorAll('.toc-nav a').forEach(item => {
+                    item.classList.remove('active');
+                });
+                this.classList.add('active');
+            }
+        });
+    });
+
+    // Highlight active section in TOC
+    const sections = document.querySelectorAll('.terms-section');
+    const observerOptions = {
+        root: null,
+        rootMargin: `-${navbar.offsetHeight + 20}px 0px -50% 0px`,
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const id = entry.target.getAttribute('id');
+            const correspondingLink = document.querySelector(`.toc-nav a[href="#${id}"]`);
+
+            if (correspondingLink) {
+                if (entry.isIntersecting) {
+                    document.querySelectorAll('.toc-nav a').forEach(link => link.classList.remove('active'));
+                    correspondingLink.classList.add('active');
+                }
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+
+    // Handle initial hash if present
+    if (window.location.hash) {
+        const initialHash = window.location.hash;
+        const initialTargetElement = document.querySelector(initialHash);
+        if (initialTargetElement) {
+            setTimeout(() => {
+                const navbarHeight = navbar.offsetHeight;
+                const offsetPosition = initialTargetElement.offsetTop - navbarHeight - 20;
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+                const correspondingLink = document.querySelector(`.toc-nav a[href="${initialHash}"]`);
+                if (correspondingLink) {
+                    correspondingLink.classList.add('active');
+                }
+            }, 100);
+        }
+    }
+</script>
+
+</body>
+</html>
