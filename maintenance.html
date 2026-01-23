@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Enomen | Under Maintenance</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&amp;display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #0A0A0A;
+      color: #DDD;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 1rem;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      user-select: none;
+    }
+
+    .maintenance-container {
+      text-align: center;
+      max-width: 700px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Purple Glow Effects */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 20%;
+      right: 10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(176, 116, 212, 0.15) 0%, rgba(176, 116, 212, 0) 70%);
+      z-index: 1;
+      filter: blur(40px);
+      opacity: 0.6;
+    }
+    
+    body::after {
+      content: '';
+      position: absolute;
+      bottom: 15%;
+      left: 5%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(176, 116, 212, 0.1) 0%, rgba(176, 116, 212, 0) 70%);
+      z-index: 1;
+      filter: blur(30px);
+      opacity: 0.4;
+    }
+
+    .maintenance-title {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      margin-bottom: 1.5rem;
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      color: white;
+    }
+
+    .maintenance-title .highlight {
+      background: linear-gradient(90deg, #B074D4 0%, #925BB5 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .maintenance-description {
+      max-width: 600px;
+      margin: 0 auto 1.5rem auto;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #AAA;
+    }
+
+    .eta-container {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 1.2rem;
+      margin: 2rem auto;
+      max-width: 400px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .eta-label {
+      font-size: 0.9rem;
+      color: #AAA;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+
+    .eta-time {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #B074D4;
+    }
+
+    .maintenance-btn {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 9999px;
+      background: #B074D4;
+      border: none;
+      color: white;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      user-select: none;
+      box-shadow: 0 4px 14px rgba(176, 116, 212, 0.3);
+      position: relative;
+      z-index: 2;
+    }
+
+    .maintenance-btn:hover, .maintenance-btn:focus {
+      background: #925BB5;
+      outline: none;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(176, 116, 212, 0.4);
+      text-decoration: none;
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      body::before,
+      body::after {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="maintenance-container">
+    <h1 class="maintenance-title">
+      We're <span class="highlight">Improving</span> Your Experience
+    </h1>
+    
+    <p class="maintenance-description">
+      This page is currently undergoing maintenance as our development team works on improvements. 
+      In the meantime, you can contact our support team via our Discord server.
+    </p>
+    
+    <div class="eta-container">
+      <div class="eta-label">Expected Service Restoration</div>
+      <div class="eta-time">January 23, 8:00 UTC</div>
+    </div>
+    
+    <a href="https://enomen.one/discord" class="maintenance-btn" target="_blank" rel="noopener noreferrer">
+      <i class="fab fa-discord"></i> Join Our Discord
+    </a>
+  </div>
+</body>
+</html>
