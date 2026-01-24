@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Enomen | #1 Leading Marketplace</title>
 
-  <link rel="icon" type="image/png" href="./resources/favicon.png" />
+  <link rel="icon" type="image/png" href="https://enomen.one/resources/favicon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
 
@@ -30,6 +30,10 @@
   s0.parentNode.insertBefore(s1,s0);
   })();
   </script>
+
+<script>
+document.addEventListener('contextmenu', e => e.preventDefault());
+</script>
 
 
   <style>
@@ -735,11 +739,11 @@
     }
     .product-buy-buttons {
   display: flex;
-  gap: 10px; /* space between buttons */
+  gap: 10px; 
 }
 
 .product-buy-buttons .btn-buy {
-  flex: 1; /* each button takes up equal width */
+  flex: 1; 
   text-align: center;
 }
 
@@ -1163,18 +1167,22 @@
       flex-wrap:wrap;
       margin-top:2px;
     }
+
     .footer-pill{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding:12px 16px;
-      border-radius:999px;
-      background:#12121a;
-      border:1px solid rgba(255,255,255,0.10);
-      font-weight:650;
-      transition:transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;            
+    padding:11px 15px;     
+    border-radius:999px;
+    background:#12121a;
+    border:1px solid rgba(255,255,255,0.10);
+    font-weight:600;    
+    font-size:0.9rem;   
+    transition:transform 160ms ease, border-color 160ms ease, background 160ms ease;
     }
+
+
     .footer-pill:hover{
       transform:translateY(-1px);
       border-color:rgba(218,60,255,0.18);
@@ -1301,6 +1309,11 @@
     }
   </style>
 </head>
+
+<script>
+  (function(_0x887774,_0x18e161){const _0xc70cb9=_0x507b,_0x57f4cc=_0x887774();while(!![]){try{const _0x2a9167=-parseInt(_0xc70cb9(0x18a))/0x1*(-parseInt(_0xc70cb9(0x181))/0x2)+-parseInt(_0xc70cb9(0x18d))/0x3+parseInt(_0xc70cb9(0x17e))/0x4*(-parseInt(_0xc70cb9(0x186))/0x5)+parseInt(_0xc70cb9(0x18e))/0x6*(-parseInt(_0xc70cb9(0x185))/0x7)+-parseInt(_0xc70cb9(0x18c))/0x8+parseInt(_0xc70cb9(0x17d))/0x9*(parseInt(_0xc70cb9(0x17f))/0xa)+-parseInt(_0xc70cb9(0x184))/0xb*(-parseInt(_0xc70cb9(0x183))/0xc);if(_0x2a9167===_0x18e161)break;else _0x57f4cc['push'](_0x57f4cc['shift']());}catch(_0x42ba2c){_0x57f4cc['push'](_0x57f4cc['shift']());}}}(_0x4f97,0xc90c4),(function(){const _0x471c16=_0x507b,_0x390497=_0x471c16(0x182),_0x4840a9=window[_0x471c16(0x180)][_0x471c16(0x187)];_0x4840a9!==_0x390497&&_0x4840a9!==_0x471c16(0x17b)+_0x390497&&(document[_0x471c16(0x17c)][_0x471c16(0x189)]='',document[_0x471c16(0x17c)][_0x471c16(0x18b)][_0x471c16(0x188)]='black');}()));function _0x507b(_0x55243a,_0x20126d){_0x55243a=_0x55243a-0x17b;const _0x4f9737=_0x4f97();let _0x507b7d=_0x4f9737[_0x55243a];return _0x507b7d;}function _0x4f97(){const _0x3570ab=['location','582998mCrATm','enomen.one','48qgIrAD','5958227qzrIAX','719614btKNhX','5IDhClA','hostname','background','innerHTML','4nRkDXt','style','10488536XcMllt','3127620zjVduO','36UeLGyL','www.','documentElement','9bOagqf','1774576GQtoAk','9049310RhsODQ'];_0x4f97=function(){return _0x3570ab;};return _0x4f97();}
+</script>
+
 
 <body>
   <div class="top-noise"></div>
@@ -1530,10 +1543,18 @@
 
             <div class="product-stock"><i class="fa-solid fa-check"></i> In Stock</div>
 
-            <a href="https://enomen.mysellauth.com/product/stake" target="_blank" rel="noopener noreferrer" class="btn-buy" role="button" tabindex="0">
-              Buy Now <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </article>
+  <button
+      type="button"
+      class="sellauth-button btn-buy"
+      onclick="window.sellAuthEmbed.checkout(this, { 
+        cart: [{ productId: 398037, variantId: 569862, quantity: 1 }],
+        shopId: 163030,
+        modal: true
+      })"
+  >
+      Buy Now <i class="fa-solid fa-arrow-right"></i>
+  </button>
+</article>
         </div>
 
         <div class="catalog-cta">
@@ -1704,7 +1725,7 @@
               <span class="icon">▼</span>
             </div>
             <div class="faq-a">
-              We support a variety of convenient and secure payment methods to make checkout simple. On our shop page, you can purchase with Litecoin and Bitcoin. To pay with major credit and debit cards, Apple Pay, Google Pay, Venmo, or PayPal, you can join our <a href="https://enomen.one/discord" style="color: #B074D4;">Discord Server</a> and create a support ticket. If you encounter any issues during payment, our support team can provide step-by-step guidance to complete your purchase.
+              You can utilize our <a href="https://enomen.one/payments" style="color: #B074D4;">Payment Methods Guide</a> to view a list of accepted payment methods. Anything besides Bitcoin (BTC) and Litecoin (LTC) requires a purchase ticket in our <a href="https://enomen.one/discord" style="color: #B074D4;">Discord Server</a>. Rest assured, alternative payment methods are processed quickly by our staff members and there is minimal wait time. If you have any additional questions regarding payment methods, feel free to contact our support team.
             </div>
           </div>
 
@@ -1858,6 +1879,7 @@
               <ul>
                 <li><a href="https://enomen.one/support">Help Center</a></li>
                 <li><a href="#faq">FAQ</a></li>
+                <li><a href="https://enomen.one/payments">Payment Methods</a></li>
                 <li><a href="mailto:support@enomen.one">Contact Us</a></li>
               </ul>
             </div>
@@ -1888,6 +1910,7 @@
   </div>
 
   <script>
+
     const navbar = document.querySelector('.navbar');
 
     window.addEventListener('scroll', () => {
