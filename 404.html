@@ -2,73 +2,161 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Enomen | Error 404</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Not Found</title>
+  <link rel="icon" type="image/png" href="https://enomen.one/resources/favicon.png" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+
   <style>
-    body {
-      margin: 0;
-      background-color: #19181a;
-      color: white;
-      overflow: hidden;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 1rem;
+    :root{
+      --brand:#A96BD0;
+      --brandHot:#DA3CFF;
+      --grad: linear-gradient(90deg, var(--brandHot), var(--brand));
+      --bg0:#05050A;
+      --bg1:#070712;
+      --text:#F2F0F7;
+      --muted:rgba(242,240,247,0.65);
+      --border:rgba(255,255,255,0.12);
     }
 
-    .coming-soon-badge {
-      display: inline-block;
-      background-color: #B074D4; /* Purple */
-      color: white;
-      font-weight: 600;
-      font-size: 0.85rem;
-      padding: 0.2rem 0.8rem;
-      border-radius: 9999px; /* pill shape */
-      margin-bottom: 0.8rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      user-select: none;
+    *{box-sizing:border-box;}
+    html,body{height:100%;}
+
+    body{
+      margin:0;
+      font-family:Inter,system-ui,sans-serif;
+      background:
+        radial-gradient(1200px 700px at 50% -10%, rgba(218,60,255,0.14), transparent 60%),
+        radial-gradient(900px 600px at 15% 20%, rgba(169,107,208,0.10), transparent 62%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      color:var(--text);
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:40px;
     }
 
-    .custom-title {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
+    .logo{
+      display:flex;
+      justify-content:center;
+      margin-bottom:22px;
     }
 
-    .custom-title .smm {
-      color: #B074D4;
+    .logo img{
+      height:54px;
+      opacity:0.95;
     }
 
-    .custom-description {
-      max-width: 700px;
-      margin: 0 auto 2rem auto;
-      white-space: normal;
-      font-size: 1.1rem;
-      line-height: 1.5;
-      color: #ccc;
+    h1{
+      font-size:clamp(4rem, 10vw, 6rem);
+      margin:0;
+      font-weight:900;
+      letter-spacing:-0.06em;
+      background:var(--grad);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
     }
 
-    .custom-btn {
-      font-weight: 600;
-      border-radius: 4px;
-      padding: 0.5rem 2rem;
+    h2{
+      margin:12px 0 8px;
+      font-size:1.6rem;
+      font-weight:800;
+    }
+
+    p{
+      margin:0 auto;
+      max-width:480px;
+      color:var(--muted);
+      font-size:1.05rem;
+      line-height:1.6;
+    }
+
+    .actions{
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:28px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:13px 18px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:0.95rem;
+      border:1px solid transparent;
+      cursor:pointer;
+      text-decoration:none;
+      transition:transform 160ms ease, opacity 160ms ease;
+    }
+
+    .btn i{
+      font-size:1rem;
+    }
+
+    .btn-primary{
+      background:var(--grad);
+      border-color:rgba(255,255,255,0.15);
+      color:#fff;
+    }
+
+    .btn-primary:hover{
+      opacity:0.92;
+      transform:translateY(-2px);
+    }
+
+    .btn-ghost{
+      background:rgba(255,255,255,0.04);
+      border-color:rgba(255,255,255,0.10);
+      color:rgba(242,240,247,0.85);
+    }
+
+    .btn-ghost:hover{
+      transform:translateY(-2px);
+      border-color:rgba(218,60,255,0.25);
     }
   </style>
 </head>
+
 <body>
-  <div class="text-center">
-    <h1 class="custom-title">
-      Error 404
-    </h1>
-    <p class="custom-description">
-  The page you’re looking for doesn’t exist or has been moved.
+
+  <main>
+
+    <h1>404</h1>
+    <h2>Page not found.</h2>
+
+    <p>
+      The page you’re looking for doesn’t exist or has been moved.
     </p>
-    <a href="https://enomen.one" class="btn btn-light custom-btn" target="_self" rel="noopener noreferrer">
-      Go Home
-    </a>
-  </div>
+
+    <div class="actions">
+      <a href="https://enomen.one" class="btn btn-primary">
+        <i class="fa-solid fa-house"></i>
+        Back Home
+      </a>
+
+      <a href="https://enomen.one/shop" class="btn btn-ghost">
+        <i class="fa-solid fa-bag-shopping"></i>
+        Shop
+      </a>
+
+      <a href="https://enomen.one/discord" class="btn btn-ghost">
+        <i class="fa-brands fa-discord"></i>
+        Discord
+      </a>
+    </div>
+
+  </main>
+
 </body>
 </html>
