@@ -2,70 +2,122 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Enomen | Redirecting...</title>
-
-  <meta http-equiv="refresh" content="3;url=https://enomen.mysellauth.com">
-
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="https://enomen.one/resources/favicon.png" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
 
   <style>
-    body {
-      margin: 0;
-      background-color: #19181a;
-      color: white;
-      overflow: hidden;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 1rem;
+    :root{
+      --brand:#A96BD0;
+      --brandHot:#DA3CFF;
+      --grad: linear-gradient(90deg, var(--brandHot), var(--brand));
+      --bg0:#05050A;
+      --bg1:#070712;
+      --text:#F2F0F7;
+      --muted:rgba(242,240,247,0.65);
+      --border:rgba(255,255,255,0.12);
     }
 
-    .custom-title {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
+    *{box-sizing:border-box;}
+    html,body{height:100%; margin:0;}
+
+    body{
+      font-family:Inter,system-ui,sans-serif;
+      background:
+        radial-gradient(1200px 700px at 50% -10%, rgba(218,60,255,0.14), transparent 60%),
+        radial-gradient(900px 600px at 15% 20%, rgba(169,107,208,0.10), transparent 62%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      color:var(--text);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:40px;
     }
 
-    .custom-description {
-      max-width: 700px;
-      margin: 0 auto 2rem auto;
-      font-size: 1.1rem;
-      line-height: 1.5;
-      color: #ccc;
+    h1{
+      font-size:clamp(3rem, 8vw, 4rem);
+      margin:0 0 16px;
+      font-weight:900;
+      letter-spacing:-0.03em;
+      background:var(--grad);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
     }
 
-    .custom-btn {
-      font-weight: 600;
-      border-radius: 4px;
-      padding: 0.5rem 2rem;
+    p{
+      margin:0 auto 28px;
+      max-width:480px;
+      color:var(--muted);
+      font-size:1.05rem;
+      line-height:1.6;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:13px 22px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:0.95rem;
+      border:1px solid transparent;
+      cursor:pointer;
+      text-decoration:none;
+      transition:transform 160ms ease, opacity 160ms ease;
+    }
+
+    .btn i{
+      font-size:1rem;
+    }
+
+    .btn-primary{
+      background:var(--grad);
+      border-color:rgba(255,255,255,0.15);
+      color:#fff;
+    }
+
+    .btn-primary:hover{
+      opacity:0.92;
+      transform:translateY(-2px);
+    }
+
+    .btn-ghost{
+      background:rgba(255,255,255,0.04);
+      border-color:rgba(255,255,255,0.10);
+      color:rgba(242,240,247,0.85);
+    }
+
+    .btn-ghost:hover{
+      transform:translateY(-2px);
+      border-color:rgba(218,60,255,0.25);
     }
   </style>
 
   <script>
     setTimeout(() => {
       window.location.href = "https://enomen.mysellauth.com";
-    }, 1000);
+    }, 1500);
   </script>
 </head>
 
 <body>
-  <div class="text-center">
-    <h1 class="custom-title">Redirecting…</h1>
-
-    <p class="custom-description">
-      You’re being redirected to our store.<br />
-      If nothing happens, click the button below.
+  <div>
+    <h1>Redirecting…</h1>
+    <p>
+      You’re being redirected  nt to our shop.<br />
+      If it doesn’t happen automatically, click the button below.
     </p>
 
-    <a
-      href="https://enomen.mysellauth.com"
-      class="btn btn-light custom-btn"
-      target="_self"
-      rel="noopener noreferrer"
-    >
-      Continue
+    <a href="https://enomen.mysellauth.com" class="btn btn-primary">
+      <i class="fa-solid fa-bag-shopping"></i>
+      Go to Shop
     </a>
   </div>
 </body>
