@@ -16,7 +16,6 @@
   <meta property="og:url" content="https://enomen.one" />
   <meta name="twitter:card" content="summary_large_image" />
 
-
   <script src="https://sellauth.com/assets/js/sellauth-embed-2.js"></script>
 
   <script type="text/javascript">
@@ -34,7 +33,6 @@
 <script>
 document.addEventListener('contextmenu', e => e.preventDefault());
 </script>
-
 
   <style>
     :root{
@@ -78,6 +76,11 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     a{ color:inherit; text-decoration:none; }
     button{ font-family:inherit; }
     ::selection{ background:rgba(218,60,255,0.24); }
+
+    /* Bold text glow */
+    strong, b {
+      text-shadow: 0 0 18px rgba(218,60,255,0.55), 0 0 6px rgba(218,60,255,0.30);
+    }
 
     .container{
       width:100%;
@@ -147,20 +150,227 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       display:inline-flex;
       align-items:center;
       gap:8px;
-      padding:10px 12px;
-      border-radius:999px;
+      padding:10px 4px;
+      border-radius:0;
       font-weight:600;
       font-size:0.92rem;
-      color:rgba(242,240,247,0.86);
-      border:1px solid transparent;
-      transition:transform 160ms ease, background 160ms ease, border-color 160ms ease, color 160ms ease;
+      color:rgba(242,240,247,0.72);
+      border:none;
+      position:relative;
+      transition:color 200ms ease;
+    }
+    .nav-links a::after{
+      content:"";
+      position:absolute;
+      bottom:4px;
+      left:0;
+      width:100%;
+      height:1.5px;
+      border-radius:999px;
+      background:var(--grad);
+      box-shadow: 0 0 8px rgba(218,60,255,0.70);
+      transform:scaleX(0);
+      transform-origin:left center;
+      transition:transform 220ms cubic-bezier(0.34,1.3,0.64,1);
     }
     .nav-links a:hover{
-      background:rgba(255,255,255,0.05);
-      border-color:rgba(218,60,255,0.18);
+      background:transparent;
+      border-color:transparent;
       color:#fff;
-      transform:translateY(-1px);
+      transform:none;
     }
+    .nav-links a:hover::after{
+      transform:scaleX(1);
+    }
+
+    /* ── RESOURCES DROPDOWN ── */
+    .nav-resources-wrap {
+      position: relative;
+    }
+
+    .nav-item-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 4px;
+      border-radius: 0;
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: rgba(242,240,247,0.72);
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-family: inherit;
+      position: relative;
+      transition: color 200ms ease;
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    .nav-item-btn::after {
+      content: "";
+      position: absolute;
+      bottom: 4px;
+      left: 0;
+      width: 100%;
+      height: 1.5px;
+      border-radius: 999px;
+      background: var(--grad);
+      box-shadow: 0 0 8px rgba(218,60,255,0.70);
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 220ms cubic-bezier(0.34,1.3,0.64,1);
+    }
+
+    .nav-item-btn:hover,
+    .nav-item-btn.active {
+      background: transparent;
+      border-color: transparent;
+      color: #fff;
+    }
+
+    .nav-item-btn:hover::after,
+    .nav-item-btn.active::after {
+      transform: scaleX(1);
+    }
+
+    .nav-chevron {
+      font-size: 0.70rem;
+      opacity: 0.65;
+      transition: transform 280ms cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: inline-block;
+    }
+
+    .nav-item-btn.active .nav-chevron {
+      transform: rotate(180deg);
+    }
+
+    .resources-dropdown {
+      position: absolute;
+      top: calc(100% + 12px);
+      left: 50%;
+      transform: translateX(-50%) translateY(-8px);
+      width: 340px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.13);
+      background: rgba(10,10,18,1);
+      backdrop-filter: blur(24px) saturate(1.6);
+      -webkit-backdrop-filter: blur(24px) saturate(1.6);
+      box-shadow:
+        0 8px 32px rgba(0,0,0,0.70),
+        0 2px 8px rgba(0,0,0,0.50),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+      padding: 8px;
+      opacity: 0;
+      pointer-events: none;
+      transition:
+        opacity 200ms ease,
+        transform 220ms cubic-bezier(0.34, 1.3, 0.64, 1);
+      z-index: 200;
+      overflow: hidden;
+    }
+
+    .resources-dropdown::before { display: none; }
+    .resources-dropdown::after  { display: none; }
+
+    .resources-dropdown.open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .dropdown-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 9px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      text-decoration: none;
+      color: var(--text);
+      background: transparent;
+      transition:
+        background 130ms ease,
+        border-color 130ms ease;
+      cursor: pointer;
+      position: relative;
+      white-space: nowrap;
+    }
+
+    .dropdown-item:hover {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(255,255,255,0.10);
+    }
+
+    .di-icon {
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+      min-height: 28px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.10);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 28px;
+      font-size: 0;
+      overflow: visible;
+      transition: border-color 130ms ease, background 130ms ease;
+    }
+
+    .di-icon i {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-size: 11px;
+      line-height: 1;
+      display: block;
+    }
+
+    .dropdown-item:hover .di-icon {
+      background: rgba(218,60,255,0.12);
+      border-color: rgba(218,60,255,0.28);
+    }
+
+    .di-text {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 0;
+    }
+
+    .di-label {
+      font-weight: 700;
+      font-size: 0.76rem;
+      color: rgba(242,240,247,0.95);
+      line-height: 1;
+      white-space: nowrap;
+      display: block;
+      margin: 0;
+      padding: 0;
+    }
+
+    .di-sub {
+      font-weight: 500;
+      font-size: 0.68rem;
+      color: rgba(242,240,247,0.42);
+      line-height: 1;
+      white-space: nowrap;
+      display: block;
+      margin: 0;
+      padding: 0;
+    }
+    /* ── END RESOURCES DROPDOWN ── */
 
     .nav-cta{
       min-width:210px;
@@ -211,6 +421,26 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       -webkit-background-clip:text;
       background-clip:text;
       color:transparent;
+      position:relative;
+    }
+
+    /* Glow pseudo-element sits behind, avoids the black-box artifact from filter on clipped text */
+    .accent::before{
+      content:attr(data-glow);
+      position:absolute;
+      inset:0;
+      background:var(--grad);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      filter:blur(10px) opacity(0.75);
+      pointer-events:none;
+      z-index:-1;
+      user-select:none;
+    }
+
+    .accent-soft::before{
+      filter:blur(5px) opacity(0.28);
     }
 
     .hero{
@@ -659,7 +889,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     }
     .sellauth-button {
         color: #fff !important;
-}
+    }
     
     .sellauth-button .icon{
       width:18px;
@@ -738,15 +968,14 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       position:relative;
     }
     .product-buy-buttons {
-  display: flex;
-  gap: 10px; 
-}
+      display: flex;
+      gap: 10px; 
+    }
 
-.product-buy-buttons .btn-buy {
-  flex: 1; 
-  text-align: center;
-}
-
+    .product-buy-buttons .btn-buy {
+      flex: 1; 
+      text-align: center;
+    }
 
     .compare::before{
       content:"";
@@ -1169,19 +1398,18 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     }
 
     .footer-pill{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    gap:9px;            
-    padding:11px 15px;     
-    border-radius:999px;
-    background:#12121a;
-    border:1px solid rgba(255,255,255,0.10);
-    font-weight:600;    
-    font-size:0.9rem;   
-    transition:transform 160ms ease, border-color 160ms ease, background 160ms ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:9px;            
+      padding:11px 15px;     
+      border-radius:999px;
+      background:#12121a;
+      border:1px solid rgba(255,255,255,0.10);
+      font-weight:600;    
+      font-size:0.9rem;   
+      transition:transform 160ms ease, border-color 160ms ease, background 160ms ease;
     }
-
 
     .footer-pill:hover{
       transform:translateY(-1px);
@@ -1219,13 +1447,32 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       color:rgba(242,240,247,0.72);
       font-weight:600;
       font-size:0.92rem;
-      transition:transform 160ms ease, color 160ms ease;
+      transition:color 200ms ease;
       display:inline-flex;
       width:max-content;
+      position:relative;
+      padding-bottom:4px;
+    }
+    .footer-col a::after{
+      content:"";
+      position:absolute;
+      bottom:0;
+      left:0;
+      width:100%;
+      height:1.5px;
+      border-radius:999px;
+      background:var(--grad);
+      box-shadow: 0 0 8px rgba(218,60,255,0.70);
+      transform:scaleX(0);
+      transform-origin:left center;
+      transition:transform 220ms cubic-bezier(0.34,1.3,0.64,1);
     }
     .footer-col a:hover{
       color:#fff;
-      transform:translateX(4px);
+      background:transparent;
+    }
+    .footer-col a:hover::after{
+      transform:scaleX(1);
     }
 
     .footer-bottom{
@@ -1323,10 +1570,58 @@ document.addEventListener('contextmenu', e => e.preventDefault());
         <ul class="nav-links" aria-label="Sections">
           <li><a href="#features">Features</a></li>
           <li><a href="#products">Best Sellers</a></li>
-          <li><a href="#compare">Why Us</a></li>
-          <li><a href="#testimonials">Reviews</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="#join-us">Join Us</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+
+          <li class="nav-resources-wrap" id="resources-nav-item">
+            <button
+              class="nav-item-btn"
+              id="resources-trigger"
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="resources-dropdown"
+            >
+              Resources
+              <i class="fa-solid fa-chevron-down nav-chevron" aria-hidden="true"></i>
+            </button>
+
+            <div class="resources-dropdown" id="resources-dropdown" role="menu" aria-label="Resources menu">
+              <div class="dropdown-grid">
+
+                <a class="dropdown-item" href="https://status.enomen.one" role="menuitem">
+                  <div class="di-icon"><i class="fa-solid fa-signal"></i></div>
+                  <div class="di-text">
+                    <span class="di-label">System Status</span>
+                    <span class="di-sub">Service Status</span>
+                  </div>
+                </a>
+
+                <a class="dropdown-item" href="https://enomen.one/support#faq-section" role="menuitem" id="dropdown-faq-link">
+                  <div class="di-icon"><i class="fa-solid fa-circle-question"></i></div>
+                  <div class="di-text">
+                    <span class="di-label">FAQ</span>
+                    <span class="di-sub">Quick Answers</span>
+                  </div>
+                </a>
+
+                <a class="dropdown-item" href="https://enomen.one/support" role="menuitem">
+                  <div class="di-icon"><i class="fa-solid fa-envelope"></i></div>
+                  <div class="di-text">
+                    <span class="di-label">Help Center</span>
+                    <span class="di-sub">Contact Our Team</span>
+                  </div>
+                </a>
+
+                <a class="dropdown-item" href="https://enomen.one/payments" role="menuitem">
+                  <div class="di-icon"><i class="fa-solid fa-credit-card"></i></div>
+                  <div class="di-text">
+                    <span class="di-label">Payments</span>
+                    <span class="di-sub">Accepted Methods</span>
+                  </div>
+                </a>
+
+              </div>
+            </div>
+          </li>
         </ul>
 
         <div class="nav-cta">
@@ -1353,20 +1648,19 @@ document.addEventListener('contextmenu', e => e.preventDefault());
         </div>
 
         <h1 class="hero-title">
-          Discover the Enomen <span class="accent">Difference</span>
+          Discover the Enomen <span class="accent accent-soft" data-glow="Difference">Difference</span>
         </h1>
 
         <p class="hero-sub">
-        Premium digital products, seamless <span class="accent">service</span>, and trusted <span class="accent">results</span>. 
+        Premium digital products, seamless <span class="accent" data-glow="service">service</span>, and trusted <span class="accent" data-glow="results">results</span>. 
         Fast delivery, dedicated support, and hassle-free payments. 
         </p>
 
         <div class="hero-badges" aria-label="Highlights">
-        <div class="badge"><i class="fa-solid fa-magic"></i> Seamless Experience</div>
-        <div class="badge"><i class="fa-solid fa-paper-plane"></i> Fast Delivery</div>
-        <div class="badge"><i class="fa-solid fa-star"></i> Trusted Since 2023</div>
-        <div class="badge"><i class="fa-solid fa-heart"></i> Customer-Centered</div>
-
+          <div class="badge"><i class="fa-solid fa-magic"></i> Seamless Experience</div>
+          <div class="badge"><i class="fa-solid fa-paper-plane"></i> Fast Delivery</div>
+          <div class="badge"><i class="fa-solid fa-star"></i> Trusted Since 2023</div>
+          <div class="badge"><i class="fa-solid fa-heart"></i> Customer-Centered</div>
         </div>
 
         <div class="hero-actions">
@@ -1390,7 +1684,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
 
     <section id="features" class="section fade-in-section" aria-label="Features">
       <div class="container">
-        <h2 class="section-title">Why Choose <span class="accent">Enomen</span>?</h2>
+        <h2 class="section-title">Why Choose <span class="accent" data-glow="Enomen">Enomen</span>?</h2>
         <p class="section-sub">
           Premium experience, real support, and purchases you can trust — built to feel effortless.
         </p>
@@ -1419,159 +1713,156 @@ document.addEventListener('contextmenu', e => e.preventDefault());
 
     <section id="products" class="section fade-in-section" aria-label="Products">
       <div class="container">
-        <h2 class="section-title"><span class="accent">Best</span> Sellers</span></h2>
+        <h2 class="section-title"><span class="accent" data-glow="Best">Best</span> Sellers</h2>
         <p class="section-sub">
           See what Enomen customers keep coming back for. This is just a fraction of what we offer.
         </p>
 
-<div class="products-grid" role="list" aria-label="Available products">
+        <div class="products-grid" role="list" aria-label="Available products">
 
-  <article class="panel-card product-card" role="listitem" tabindex="0">
-    <h3 class="product-title">Discord Nitro</h3>
-    <p class="product-price">$4.29 - $27.99</p>
+          <article class="panel-card product-card" role="listitem" tabindex="0">
+            <h3 class="product-title">Discord Nitro</h3>
+            <p class="product-price">$4.29 - $27.99</p>
 
-    <p class="product-description">
-      Unlock Discord Nitro (Boost Version) for 1 Month or 1 Year. One-time purchase, no subscription.
-    </p>
+            <p class="product-description">
+              Unlock Discord Nitro (Boost Version) for 1 Month or 1 Year. One-time purchase, no subscription.
+            </p>
 
-    <ul class="product-features">
-      <li><span class="checkmark"></span>Full Access to Discord Nitro</li>
-      <li><span class="checkmark"></span>Delivered as a Gift Link</li>
-      <li><span class="checkmark"></span>Eligible for Fast Delivery</li>
-      <li><span class="checkmark"></span>Exclusive Nitro Perks</li>
-    </ul>
+            <ul class="product-features">
+              <li><span class="checkmark"></span>Full Access to Discord Nitro</li>
+              <li><span class="checkmark"></span>Delivered as a Gift Link</li>
+              <li><span class="checkmark"></span>Eligible for Fast Delivery</li>
+              <li><span class="checkmark"></span>Exclusive Nitro Perks</li>
+            </ul>
 
-    <div class="payment-icons-row" aria-label="Payment methods">
-      <div class="payment-icon"><i class="fa-solid fa-credit-card"></i></div>
-      <div class="payment-icon"><i class="fa-brands fa-cc-apple-pay"></i></div>
-      <div class="payment-icon"><i class="fa-brands fa-google-pay"></i></div>
-      <div class="payment-icon"><i class="fa-brands fa-bitcoin"></i></div>
-    </div>
+            <div class="payment-icons-row" aria-label="Payment methods">
+              <div class="payment-icon"><i class="fa-solid fa-credit-card"></i></div>
+              <div class="payment-icon"><i class="fa-brands fa-cc-apple-pay"></i></div>
+              <div class="payment-icon"><i class="fa-brands fa-google-pay"></i></div>
+              <div class="payment-icon"><i class="fa-brands fa-bitcoin"></i></div>
+            </div>
 
-    <div class="product-stock"><i class="fa-solid fa-check"></i> In Stock</div>
+            <div class="product-stock"><i class="fa-solid fa-check"></i> In Stock</div>
 
-    <div class="product-buy-buttons">
-      <button
-        type="button"
-        class="sellauth-button btn-buy"
-        onclick="window.sellAuthEmbed.checkout(this, { 
-          cart: [{ productId: 398033, variantId: 569856, quantity: 1 }],
-          shopId: 163030,
-          modal: true
-        })"
-      >
-        1 Month <i class="fa-solid fa-arrow-right"></i>
-      </button>
+            <div class="product-buy-buttons">
+              <button
+                type="button"
+                class="sellauth-button btn-buy"
+                onclick="window.sellAuthEmbed.checkout(this, { 
+                  cart: [{ productId: 398033, variantId: 569856, quantity: 1 }],
+                  shopId: 163030,
+                  modal: true
+                })"
+              >
+                1 Month <i class="fa-solid fa-arrow-right"></i>
+              </button>
 
-      <button
-        type="button"
-        class="sellauth-button btn-buy"
-        onclick="window.sellAuthEmbed.checkout(this, { 
-          cart: [{ productId: 398033, variantId: 825593, quantity: 1 }],
-          shopId: 163030,
-          modal: true
-        })"
-      >
-        1 Year <i class="fa-solid fa-arrow-right"></i>
-      </button>
-    </div>
-  </article>
+              <button
+                type="button"
+                class="sellauth-button btn-buy"
+                onclick="window.sellAuthEmbed.checkout(this, { 
+                  cart: [{ productId: 398033, variantId: 825593, quantity: 1 }],
+                  shopId: 163030,
+                  modal: true
+                })"
+              >
+                1 Year <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </article>
 
+          <article class="panel-card product-card" role="listitem" tabindex="0">
+            <h3 class="product-title">14 Server Boosts</h3>
+            <p class="product-price">$4.99 - $9.99</p>
 
-  <article class="panel-card product-card" role="listitem" tabindex="0">
-    <h3 class="product-title">14 Server Boosts</h3>
-    <p class="product-price">$4.99 - $9.99</p>
+            <p class="product-description">
+              14 Discord Server Boosts for 3 months — delivered swiftly to enhance your server with premium perks.
+            </p>
 
-    <p class="product-description">
-      14 Discord Server Boosts for 3 months — delivered swiftly to enhance your server with premium perks.
-    </p>
+            <ul class="product-features">
+              <li><span class="checkmark"></span>Unlock Level 3 Server Perks</li>
+              <li><span class="checkmark"></span>Fast & Reliable Delivery</li>
+              <li><span class="checkmark"></span>Level Up Your Server Fast</li>
+              <li><span class="checkmark"></span>No Account Login Required</li>
+            </ul>
 
-    <ul class="product-features">
-      <li><span class="checkmark"></span>Unlock Level 3 Server Perks</li>
-      <li><span class="checkmark"></span>Fast & Reliable Delivery</li>
-      <li><span class="checkmark"></span>Level Up Your Server Fast</li>
-      <li><span class="checkmark"></span>No Account Login Required</li>
-    </ul>
+            <div class="payment-icons-row" aria-label="Payment methods">
+              <div class="payment-icon"><i class="fa-solid fa-credit-card"></i></div>
+              <div class="payment-icon"><i class="fa-brands fa-cc-apple-pay"></i></div>
+              <div class="payment-icon"><i class="fa-brands fa-google-pay"></i></div>
+              <div class="payment-icon"><i class="fa-brands fa-bitcoin"></i></div>
+            </div>
 
-    <div class="payment-icons-row" aria-label="Payment methods">
-      <div class="payment-icon"><i class="fa-solid fa-credit-card"></i></div>
-      <div class="payment-icon"><i class="fa-brands fa-cc-apple-pay"></i></div>
-      <div class="payment-icon"><i class="fa-brands fa-google-pay"></i></div>
-      <div class="payment-icon"><i class="fa-brands fa-bitcoin"></i></div>
-    </div>
+            <div class="product-stock"><i class="fa-solid fa-check"></i> In Stock</div>
 
-    <div class="product-stock"><i class="fa-solid fa-check"></i> In Stock</div>
+            <div class="product-buy-buttons">
+              <button
+                type="button"
+                class="sellauth-button btn-buy"
+                onclick="window.sellAuthEmbed.checkout(this, { 
+                  cart: [{ productId: 591816, variantId: 919012, quantity: 1 }],
+                  shopId: 163030,
+                  modal: true
+                })"
+              >
+                1 Month <i class="fa-solid fa-arrow-right"></i>
+              </button>
 
-    <div class="product-buy-buttons">
-      <button
-        type="button"
-        class="sellauth-button btn-buy"
-        onclick="window.sellAuthEmbed.checkout(this, { 
-          cart: [{ productId: 591816, variantId: 919012, quantity: 1 }],
-          shopId: 163030,
-          modal: true
-        })"
-      >
-        1 Month <i class="fa-solid fa-arrow-right"></i>
-      </button>
+              <button
+                type="button"
+                class="sellauth-button btn-buy"
+                onclick="window.sellAuthEmbed.checkout(this, { 
+                  cart: [{ productId: 591816, variantId: 919013, quantity: 1 }],
+                  shopId: 163030,
+                  modal: true
+                })"
+              >
+                3 Months <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </article>
 
-      <button
-        type="button"
-        class="sellauth-button btn-buy"
-        onclick="window.sellAuthEmbed.checkout(this, { 
-          cart: [{ productId: 591816, variantId: 919013, quantity: 1 }],
-          shopId: 163030,
-          modal: true
-        })"
-      >
-        3 Months <i class="fa-solid fa-arrow-right"></i>
-      </button>
-    </div>
-  </article>
+          <article class="panel-card product-card" role="listitem" tabindex="0">
+            <h3 class="product-title">FiveM Ready Accounts</h3>
+            <p class="product-price">$0.17</p>
 
+            <p class="product-description">
+              Full access FiveM ready accounts. Ideal for starting clean or bypass-related use. Minimum of 3 quantity.
+            </p>
 
-  <article class="panel-card product-card" role="listitem" tabindex="0">
-    <h3 class="product-title">FiveM Ready Accounts</h3>
-    <p class="product-price">$0.17</p>
+            <ul class="product-features">
+              <li><span class="checkmark"></span>Not Banned, Ready for Use</li>
+              <li><span class="checkmark"></span>Full Access to Original Account Email</li>
+              <li><span class="checkmark"></span>Fast & Reliable Delivery</li>
+              <li><span class="checkmark"></span>Bulk Discounts Eligible</li>
+            </ul>
 
-    <p class="product-description">
-      Full access FiveM ready accounts. Ideal for starting clean or bypass-related use. Minimum of 3 quantity.
-    </p>
+            <div class="payment-icons-row" aria-label="Payment methods">
+              <div class="payment-icon"><i class="fa-solid fa-credit-card"></i></div>
+              <div class="payment-icon"><i class="fa-brands fa-cc-apple-pay"></i></div>
+              <div class="payment-icon"><i class="fa-brands fa-google-pay"></i></div>
+              <div class="payment-icon"><i class="fa-brands fa-bitcoin"></i></div>
+            </div>
 
-    <ul class="product-features">
-      <li><span class="checkmark"></span>Not Banned, Ready for Use</li>
-      <li><span class="checkmark"></span>Full Access to Original Account Email</li>
-      <li><span class="checkmark"></span>Fast & Reliable Delivery</li>
-      <li><span class="checkmark"></span>Bulk Discounts Eligible</li>
-    </ul>
+            <div class="product-stock"><i class="fa-solid fa-check"></i> In Stock</div>
 
-    <div class="payment-icons-row" aria-label="Payment methods">
-      <div class="payment-icon"><i class="fa-solid fa-credit-card"></i></div>
-      <div class="payment-icon"><i class="fa-brands fa-cc-apple-pay"></i></div>
-      <div class="payment-icon"><i class="fa-brands fa-google-pay"></i></div>
-      <div class="payment-icon"><i class="fa-brands fa-bitcoin"></i></div>
-    </div>
-
-    <div class="product-stock"><i class="fa-solid fa-check"></i> In Stock</div>
-
-    <button
-      type="button"
-      class="sellauth-button btn-buy"
-      onclick="window.sellAuthEmbed.checkout(this, { 
-        cart: [{ productId: 591940, variantId: 919229, quantity: 3 }],
-        shopId: 163030,
-        modal: true
-      })"
-    >
-      Buy Now <i class="fa-solid fa-arrow-right"></i>
-    </button>
-  </article>
-</div>
-
+            <button
+              type="button"
+              class="sellauth-button btn-buy"
+              onclick="window.sellAuthEmbed.checkout(this, { 
+                cart: [{ productId: 591940, variantId: 919229, quantity: 3 }],
+                shopId: 163030,
+                modal: true
+              })"
+            >
+              Buy Now <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </article>
+        </div>
 
         <div class="catalog-cta">
           <div>
-            <h3 class="catalog-title">Want more than just the <span class="accent">best sellers</span>?</h3>
+            <h3 class="catalog-title">Want more than just the <span class="accent" data-glow="best sellers">best sellers</span>?</h3>
             <p class="catalog-desc">
               Browse our full catalog of premium services, deals, and digital products.
             </p>
@@ -1583,10 +1874,9 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       </div>
     </section>
 
-
     <section id="compare" class="section fade-in-section" aria-label="Comparison">
       <div class="container">
-        <h2 class="section-title">Enomen vs <span class="accent">Other Stores</span></h2>
+        <h2 class="section-title">Enomen vs <span class="accent" data-glow="Other Stores">Other Stores</span></h2>
         <p class="section-sub">
           Discover why Enomen constantly outranks other stores providing similar services. Enomen offers superior products, fast delivery, unbeatable pricing, and 24/7 support.
         </p>
@@ -1647,7 +1937,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
 
     <section id="testimonials" class="section fade-in-section" aria-label="Testimonials">
       <div class="container">
-        <h2 class="section-title">Trusted by Customers <span class="accent">Worldwide</span></h2>
+        <h2 class="section-title">Trusted by Customers <span class="accent" data-glow="Worldwide">Worldwide</span></h2>
         <p class="section-sub">
           Real feedback from buyers who actually care about speed, quality, and reliability.
         </p>
@@ -1661,7 +1951,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
               </div>
             </div>
             <p class="t-text">
-              “Monthly nitro from here is way cheaper than anywhere else I found. Been using it for months, no problems at all.”
+              "Monthly nitro from here is way cheaper than anywhere else I found. Been using it for months, no problems at all."
             </p>
             <div class="t-foot">
               <span class="t-pill">Discord Nitro</span>
@@ -1677,7 +1967,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
               </div>
             </div>
             <p class="t-text">
-              “Fresh FiveM ready accounts that aren't banned and have never been used. I use my FiveM accounts from Enomen daily.”
+              "Fresh FiveM ready accounts that aren't banned and have never been used. I use my FiveM accounts from Enomen daily."
             </p>
             <div class="t-foot">
               <span class="t-pill">FiveM Ready Accounts</span>
@@ -1693,7 +1983,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
               </div>
             </div>
             <p class="t-text">
-              "The server boosts are so cheap compared to the other places. $12 for 3 months of full perks is a steal.”
+              "The server boosts are so cheap compared to the other places. $12 for 3 months of full perks is a steal."
             </p>
             <div class="t-foot">
               <span class="t-pill">Server Boosts</span>
@@ -1706,7 +1996,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
 
     <section id="faq" class="section fade-in-section" aria-label="FAQ">
       <div class="container">
-        <h2 class="section-title">Frequently Asked <span class="accent">Questions</span></h2>
+        <h2 class="section-title">Frequently Asked <span class="accent" data-glow="Questions">Questions</span></h2>
         <p class="section-sub">
           Find answers to the questions we get asked the most.
         </p>
@@ -1718,13 +2008,13 @@ document.addEventListener('contextmenu', e => e.preventDefault());
               <span class="icon">▼</span>
             </div>
             <div class="faq-a">
-              Some products are eligible for automatic delivery after payment is confirmed, but others may not be. Orders are delivered by our staff team for products such as Discord Nitro,Streaming & VPN Accounts, and Server Boosts. In rare cases, processing or high traffic may cause slight delays, but our team monitors all orders closely to ensure you receive your product as quickly as possible. If you notice any delay, our support staff is always ready to assist you immediately.
+              Some products are eligible for automatic delivery after payment is confirmed, but others may not be. Orders are delivered by our staff team for products such as Discord Nitro, Streaming & VPN Accounts, and Server Boosts. In rare cases, processing or high traffic may cause slight delays, but our team monitors all orders closely to ensure you receive your product as quickly as possible. If you notice any delay, our support staff is always ready to assist you immediately.
             </div>
           </div>
 
           <div class="panel-card faq-item" role="listitem">
             <div class="faq-q" role="button" tabindex="0" aria-expanded="false">
-              <span>What if a product doesn’t work?</span>
+              <span>What if a product doesn't work?</span>
               <span class="icon">▼</span>
             </div>
             <div class="faq-a">
@@ -1758,7 +2048,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
               <span class="icon">▼</span>
             </div>
             <div class="faq-a">
-            You can read our <a href="https://enomen.one/support" style="color: #B074D4;">Support Guide</a> for step-by-step instructions on how to receive support. We've made it easier than ever to reach Enomen staff, whether through live chat or our state-of-the-art Discord ticket system. Whether you need assistance with receiving your product, troubleshooting an issue, or understanding your purchase options, we’ve got you covered!
+              You can read our <a href="https://enomen.one/support" style="color: #B074D4;">Support Guide</a> for step-by-step instructions on how to receive support. We've made it easier than ever to reach Enomen staff, whether through live chat or our state-of-the-art Discord ticket system. Whether you need assistance with receiving your product, troubleshooting an issue, or understanding your purchase options, we've got you covered!
             </div>
           </div>
         </div>
@@ -1771,10 +2061,10 @@ document.addEventListener('contextmenu', e => e.preventDefault());
           <div style="display:flex;flex-direction:column;gap:12px;padding:10px 8px;">
             <div class="pill"><span class="dot"></span> Staff Online Now</div>
 
-            <h2 class="join-us-title">Join our <span class="accent"> Community.</span></h2>
+            <h2 class="join-us-title">Join our <span class="accent" data-glow=" Community."> Community.</span></h2>
 
             <p class="join-us-desc">
-          Be the first to hear about new releases, deals, and giveaways. Our Discord gives you direct access to support, updates on your orders, and a growing community of members.
+              Be the first to hear about new releases, deals, and giveaways. Our Discord gives you direct access to support, updates on your orders, and a growing community of members.
             </p>
 
             <div class="join-us-chips" aria-label="join-us features">
@@ -1816,12 +2106,11 @@ document.addEventListener('contextmenu', e => e.preventDefault());
                     <span style="color:rgba(242,240,247,0.55);font-weight:500;font-size:0.86rem;">#1 Leading Marketplace</span>
                   </div>
                 </div>
-              <a href="https://enomen.one/discord" style="text-decoration:none;">
-              <div style="display:inline-flex;align-items:center;justify-content:center;padding:9px 12px;border-radius:14px;border:1px solid rgba(255,255,255,0.10);background:rgba(255,255,255,0.05);font-weight:650;color:#fff;">
-                 Join
-            </div>
-            </a>
-
+                <a href="https://enomen.one/discord" style="text-decoration:none;">
+                  <div style="display:inline-flex;align-items:center;justify-content:center;padding:9px 12px;border-radius:14px;border:1px solid rgba(255,255,255,0.10);background:rgba(255,255,255,0.05);font-weight:650;color:#fff;">
+                    Join
+                  </div>
+                </a>
               </div>
 
               <div style="display:inline-flex;align-items:center;gap:8px;padding:9px 10px;border-radius:999px;border:1px solid rgba(57,217,138,0.25);background:rgba(57,217,138,0.08);font-weight:650;font-size:0.82rem;color:rgba(242,240,247,0.90);margin-bottom:12px;">
@@ -1851,10 +2140,8 @@ document.addEventListener('contextmenu', e => e.preventDefault());
                   <div style="color:rgba(242,240,247,0.50);font-size:0.78rem;">Avg Response (hour)</div>
                 </div>
               </div>
-
             </div>
           </div>
-
         </div>
       </div>
     </section>
@@ -1894,7 +2181,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
               <h4>Support</h4>
               <ul>
                 <li><a href="https://enomen.one/support">Help Center</a></li>
-                <li><a href="#faq">FAQ</a></li>
+                <li><a href="https://enomen.one/support#faq-section">FAQ</a></li>
                 <li><a href="https://enomen.one/payments">Payment Methods</a></li>
                 <li><a href="mailto:support@enomen.one">Contact Us</a></li>
               </ul>
@@ -1904,6 +2191,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
               <h4>Company</h4>
               <ul>
                 <li><a href="https://enomen.one/terms">Terms of Use</a></li>
+                <li><a href="https://enomen.one/terms#data-collection">Privacy Policy</a></li>
                 <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#features">Why Enomen</a></li>
               </ul>
@@ -2025,10 +2313,10 @@ document.addEventListener('contextmenu', e => e.preventDefault());
         <i class="fa-solid fa-circle-pause"></i>
       </div>
 
-      <h3>Yearly Nitro On Hold</h3>
+      <h3>Discord Nitro On Hold</h3>
       <p>
-        Discord Nitro <strong>Yearly</strong> is temporarily unavailable.<br>
-        Nitro Monthly and all other products remain unaffected.
+        Discord Nitro products are temporarily unavailable.<br>
+        All other products are unaffected.
       </p>
 
       <button onclick="closeNitroModal()">Got it</button>
@@ -2052,9 +2340,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
   <!-- yearly nitro modal end -->
 
   <script>
-
     const navbar = document.querySelector('.navbar');
-
     window.addEventListener('scroll', () => {
       if (window.scrollY > 40) navbar.classList.add('scrolled');
       else navbar.classList.remove('scrolled');
@@ -2104,6 +2390,37 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     }, { threshold: 0.12 });
 
     sections.forEach(section => observer.observe(section));
+
+    const resourcesTrigger  = document.getElementById('resources-trigger');
+    const resourcesDropdown = document.getElementById('resources-dropdown');
+    const resourcesWrap     = document.getElementById('resources-nav-item');
+    let closeTimer = null;
+
+    function openResources() {
+      clearTimeout(closeTimer);
+      resourcesDropdown.classList.add('open');
+      resourcesTrigger.classList.add('active');
+      resourcesTrigger.setAttribute('aria-expanded', 'true');
+    }
+
+    function scheduleClose() {
+      closeTimer = setTimeout(() => {
+        resourcesDropdown.classList.remove('open');
+        resourcesTrigger.classList.remove('active');
+        resourcesTrigger.setAttribute('aria-expanded', 'false');
+      }, 120);
+    }
+
+    resourcesWrap.addEventListener('mouseenter', openResources);
+    resourcesWrap.addEventListener('mouseleave', scheduleClose);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') scheduleClose();
+    });
+
+    resourcesDropdown.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', () => scheduleClose());
+    });
   </script>
 </body>
 </html>
