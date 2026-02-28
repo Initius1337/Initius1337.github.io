@@ -424,7 +424,6 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       position:relative;
     }
 
-    /* Glow pseudo-element sits behind, avoids the black-box artifact from filter on clipped text */
     .accent::before{
       content:attr(data-glow);
       position:absolute;
@@ -857,6 +856,15 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     }
     .product-stock i{ color:var(--ok); }
 
+    /* ── RED "Unavailable" stock badge ── */
+    .product-stock.unavailable{
+      border-color:rgba(255,80,80,0.30);
+      background:rgba(255,60,60,0.10);
+    }
+    .product-stock.unavailable i{
+      color:#ff5252;
+    }
+
     .btn-buy{
       margin-top:auto;
       width:100%;
@@ -876,6 +884,20 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     .btn-buy:hover{
       opacity:0.92;
       transform:translateY(-1px);
+    }
+
+    /* ── Greyed-out / disabled buy button ── */
+    .btn-buy.disabled{
+      background:rgba(255,255,255,0.07);
+      border-color:rgba(255,255,255,0.08);
+      color:rgba(242,240,247,0.30);
+      cursor:not-allowed;
+      pointer-events:none;
+      opacity:1;
+    }
+    .btn-buy.disabled:hover{
+      transform:none;
+      opacity:1;
     }
 
     .sellauth-button{
@@ -1720,6 +1742,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
 
         <div class="products-grid" role="list" aria-label="Available products">
 
+          <!-- Discord Nitro — unavailable -->
           <article class="panel-card product-card" role="listitem" tabindex="0">
             <h3 class="product-title">Discord Nitro</h3>
             <p class="product-price">$4.99 - $24.99</p>
@@ -1742,30 +1765,15 @@ document.addEventListener('contextmenu', e => e.preventDefault());
               <div class="payment-icon"><i class="fa-brands fa-bitcoin"></i></div>
             </div>
 
-            <div class="product-stock"><i class="fa-solid fa-check"></i> In Stock</div>
+            <!-- RED unavailable badge -->
+            <div class="product-stock unavailable"><i class="fa-solid fa-xmark"></i> Unavailable</div>
 
+            <!-- Greyed-out buttons -->
             <div class="product-buy-buttons">
-              <button
-                type="button"
-                class="sellauth-button btn-buy"
-                onclick="window.sellAuthEmbed.checkout(this, { 
-                  cart: [{ productId: 398033, variantId: 569856, quantity: 1 }],
-                  shopId: 163030,
-                  modal: true
-                })"
-              >
+              <button type="button" class="btn-buy disabled" disabled>
                 1 Month <i class="fa-solid fa-arrow-right"></i>
               </button>
-
-              <button
-                type="button"
-                class="sellauth-button btn-buy"
-                onclick="window.sellAuthEmbed.checkout(this, { 
-                  cart: [{ productId: 398033, variantId: 825593, quantity: 1 }],
-                  shopId: 163030,
-                  modal: true
-                })"
-              >
+              <button type="button" class="btn-buy disabled" disabled>
                 1 Year <i class="fa-solid fa-arrow-right"></i>
               </button>
             </div>
@@ -2213,7 +2221,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
 
   </div>
 
-<!-- Yearly Nitro Modal -->
+<!-- Nitro Unavailable Modal -->
 <style>
   .enomen-modal-backdrop{
     position:fixed;
@@ -2336,9 +2344,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     document.getElementById("nitroNotice").style.display = "none";
   }
 </script>
-
-  <!-- yearly nitro modal end -->
-
+<!-- modal end -->
 
   <script>
     const navbar = document.querySelector('.navbar');
