@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Enomen | Links</title>
+  <link rel="icon" type="image/png" href="https://enomen.one/resources/favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --brand: #DA3CFF;
+      --grad: linear-gradient(90deg, #DA3CFF, #DA3CFF);
+      --bg: #0a0a0a;
+      --panel: #161616;
+      --border: rgba(255,255,255,0.07);
+      --text: #F2F0F7;
+      --muted: rgba(242,240,247,0.55);
+      --ok: #39d98a;
+      --glowBorder: rgba(218,60,255,0.38);
+      --glowShadow: 0 0 22px rgba(218,60,255,0.14), 0 0 44px rgba(218,60,255,0.07), 0 4px 24px rgba(0,0,0,0.5);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background:
+        radial-gradient(1100px 600px at 50% -5%, rgba(218,60,255,0.15), transparent 55%),
+        radial-gradient(800px 500px at 80% 60%, rgba(218,60,255,0.07), transparent 60%),
+        radial-gradient(700px 500px at 15% 75%, rgba(218,60,255,0.06), transparent 60%),
+        #0a0a0a;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.028;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+      z-index: 999;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 18px 60px;
+    }
+
+    .identity {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 36px;
+      animation: fadeUp 0.55s ease both;
+    }
+
+    .identity img {
+      height: 42px;
+      width: auto;
+      display: block;
+      filter: brightness(0) invert(1);
+    }
+
+    .identity-sub {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 13px;
+      border-radius: 999px;
+      border: 1px solid rgba(218,60,255,0.22);
+      background: rgba(218,60,255,0.08);
+      font-size: 0.82rem;
+      font-weight: 650;
+      color: rgba(242,240,247,0.85);
+    }
+    .identity-sub i { color: var(--brand); }
+
+    /* Home button */
+    .home-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(218,60,255,0.30);
+      background: rgba(218,60,255,0.10);
+      color: rgba(242,240,247,0.90);
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 650;
+      text-decoration: none;
+      cursor: pointer;
+      margin-top: 28px;
+      animation: fadeUp 0.5s 0.45s ease both;
+      transition:
+        background 320ms ease,
+        border-color 320ms ease,
+        box-shadow 320ms ease,
+        transform 160ms ease;
+    }
+    .home-btn i {
+      font-size: 0.80rem;
+      color: var(--brand);
+      transition: transform 200ms ease;
+    }
+    .home-btn:hover {
+      background: rgba(218,60,255,0.18);
+      border-color: rgba(218,60,255,0.55);
+      box-shadow: 0 0 18px rgba(218,60,255,0.18);
+      transform: translateY(-1px);
+    }
+    .home-btn:hover i { transform: scale(1.15); }
+
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      width: 100%;
+      max-width: 620px;
+    }
+
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      text-decoration: none;
+      color: var(--text);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition:
+        border-color 420ms ease,
+        box-shadow 420ms ease,
+        transform 200ms ease;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.5s ease forwards;
+    }
+
+    .link-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(218,60,255,0.055);
+      opacity: 0;
+      transition: opacity 420ms ease;
+      pointer-events: none;
+    }
+    .link-card:hover::after { opacity: 1; }
+    .link-card:hover {
+      border-color: var(--glowBorder);
+      box-shadow: var(--glowShadow);
+      transform: translateY(-2px);
+    }
+
+    .link-card:nth-child(1) { animation-delay: 0.08s; }
+    .link-card:nth-child(2) { animation-delay: 0.14s; }
+    .link-card:nth-child(3) { animation-delay: 0.20s; }
+    .link-card:nth-child(4) { animation-delay: 0.26s; }
+    .link-card:nth-child(5) { animation-delay: 0.32s; }
+    .link-card:nth-child(6) { animation-delay: 0.38s; }
+
+    .card-icon {
+      width: 42px;
+      height: 42px;
+      min-width: 42px;
+      border-radius: 13px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.05rem;
+      flex-shrink: 0;
+      transition: background 420ms ease, border-color 420ms ease;
+      position: relative;
+      z-index: 1;
+    }
+    .card-icon i {
+      background: linear-gradient(135deg, #DA3CFF, #c020e0);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .link-card:hover .card-icon {
+      background: rgba(218,60,255,0.12);
+      border-color: rgba(218,60,255,0.30);
+    }
+
+    .card-text {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .card-label {
+      font-weight: 700;
+      font-size: 0.94rem;
+      color: rgba(242,240,247,0.96);
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+    .card-desc {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--muted);
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-arrow {
+      margin-left: auto;
+      color: rgba(242,240,247,0.22);
+      font-size: 0.75rem;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+      transition: color 160ms ease, transform 160ms ease;
+    }
+    .link-card:hover .card-arrow {
+      color: rgba(218,60,255,0.75);
+      transform: translateX(2px);
+    }
+
+    .footer-note {
+      margin-top: 28px;
+      color: rgba(242,240,247,0.30);
+      font-size: 0.80rem;
+      font-weight: 500;
+      animation: fadeUp 0.5s 0.55s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 520px) {
+      .links-grid { grid-template-columns: 1fr; }
+      .card-desc { white-space: normal; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="identity">
+      <a href="https://enomen.one">
+        <img src="https://enomen.one/resources/enomenn.svg" alt="Enomen" />
+      </a>
+      <div class="identity-sub">
+        <i class="fa-solid fa-trophy"></i>
+        #1 Leading Marketplace
+      </div>
+    </div>
+
+    <div class="links-grid">
+
+      <a class="link-card" href="https://enomen.one/shop" target="_blank" rel="noopener noreferrer">
+        <div class="card-icon"><i class="fa-solid fa-bag-shopping"></i></div>
+        <div class="card-text">
+          <span class="card-label">Shop</span>
+          <span class="card-desc">Browse Enomen's Full Catalog</span>
+        </div>
+        <i class="fa-solid fa-arrow-right card-arrow"></i>
+      </a>
+
+      <a class="link-card" href="https://enomen.one/discord" target="_blank" rel="noopener noreferrer">
+        <div class="card-icon"><i class="fa-brands fa-discord"></i></div>
+        <div class="card-text">
+          <span class="card-label">Discord</span>
+          <span class="card-desc">Join Our Community</span>
+        </div>
+        <i class="fa-solid fa-arrow-right card-arrow"></i>
+      </a>
+
+      <a class="link-card" href="https://enomen.one/support" target="_blank" rel="noopener noreferrer">
+        <div class="card-icon"><i class="fa-solid fa-envelope"></i></div>
+        <div class="card-text">
+          <span class="card-label">Help Center</span>
+          <span class="card-desc">FAQ / Contact Support</span>
+        </div>
+        <i class="fa-solid fa-arrow-right card-arrow"></i>
+      </a>
+
+      <a class="link-card" href="https://status.enomen.one" target="_blank" rel="noopener noreferrer">
+        <div class="card-icon"><i class="fa-solid fa-signal"></i></div>
+        <div class="card-text">
+          <span class="card-label">System Status</span>
+          <span class="card-desc">Service Uptime & Health</span>
+        </div>
+        <i class="fa-solid fa-arrow-right card-arrow"></i>
+      </a>
+
+      <a class="link-card" href="https://enomen.one/payments" target="_blank" rel="noopener noreferrer">
+        <div class="card-icon"><i class="fa-solid fa-credit-card"></i></div>
+        <div class="card-text">
+          <span class="card-label">Payment Methods</span>
+          <span class="card-desc">Supported Payment Methods</span>
+        </div>
+        <i class="fa-solid fa-arrow-right card-arrow"></i>
+      </a>
+
+      <a class="link-card" href="https://enomen.one/terms" target="_blank" rel="noopener noreferrer">
+        <div class="card-icon"><i class="fa-solid fa-file-lines"></i></div>
+        <div class="card-text">
+          <span class="card-label">Terms of Use</span>
+          <span class="card-desc">Policies and Guidelines</span>
+        </div>
+        <i class="fa-solid fa-arrow-right card-arrow"></i>
+      </a>
+
+    </div>
+
+    <a class="home-btn" href="https://enomen.one" target="_blank" rel="noopener noreferrer">
+      <i class="fa-solid fa-house"></i>
+      Go to Homepage
+    </a>
+
+    <p class="footer-note">&copy; 2026 Enomen · All rights reserved</p>
+
+  </div>
+
+<script>
+  document.addEventListener("contextmenu", function (e) {
+    e.preventDefault();
+  });
+</script>
+
+</body>
+</html>
