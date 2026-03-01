@@ -77,7 +77,6 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     button{ font-family:inherit; }
     ::selection{ background:rgba(218,60,255,0.24); }
 
-    /* Bold text glow */
     strong, b {
       text-shadow: 0 0 18px rgba(218,60,255,0.55), 0 0 6px rgba(218,60,255,0.30);
     }
@@ -183,7 +182,6 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       transform:scaleX(1);
     }
 
-    /* ── RESOURCES DROPDOWN ── */
     .nav-resources-wrap {
       position: relative;
     }
@@ -370,7 +368,6 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       margin: 0;
       padding: 0;
     }
-    /* ── END RESOURCES DROPDOWN ── */
 
     .nav-cta{
       min-width:210px;
@@ -856,15 +853,6 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     }
     .product-stock i{ color:var(--ok); }
 
-    /* ── RED "Unavailable" stock badge ── */
-    .product-stock.unavailable{
-      border-color:rgba(255,80,80,0.30);
-      background:rgba(255,60,60,0.10);
-    }
-    .product-stock.unavailable i{
-      color:#ff5252;
-    }
-
     .btn-buy{
       margin-top:auto;
       width:100%;
@@ -880,24 +868,11 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       gap:10px;
       transition:opacity 160ms ease, transform 160ms ease;
       cursor:pointer;
+      color:#fff;
     }
     .btn-buy:hover{
       opacity:0.92;
       transform:translateY(-1px);
-    }
-
-    /* ── Greyed-out / disabled buy button ── */
-    .btn-buy.disabled{
-      background:rgba(255,255,255,0.07);
-      border-color:rgba(255,255,255,0.08);
-      color:rgba(242,240,247,0.30);
-      cursor:not-allowed;
-      pointer-events:none;
-      opacity:1;
-    }
-    .btn-buy.disabled:hover{
-      transform:none;
-      opacity:1;
     }
 
     .sellauth-button{
@@ -1540,6 +1515,196 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       transform:translateY(0);
     }
 
+    /* ── STREAMING SELECTOR MODAL ── */
+    .stream-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(5,5,10,0.78);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 220ms ease;
+    }
+    .stream-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .stream-modal {
+      width: 100%;
+      max-width: 520px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: linear-gradient(180deg, #151520, #101018);
+      box-shadow: 0 24px 72px rgba(0,0,0,0.65), 0 4px 16px rgba(0,0,0,0.45);
+      position: relative;
+      overflow: hidden;
+      transform: translateY(14px) scale(0.97);
+      transition: transform 260ms cubic-bezier(0.34,1.3,0.64,1);
+    }
+    .stream-backdrop.open .stream-modal {
+      transform: translateY(0) scale(1);
+    }
+
+    .stream-modal::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(800px 280px at 50% -35%, rgba(218,60,255,0.28), transparent 58%);
+      z-index: 0;
+    }
+
+    .stream-modal-inner {
+      position: relative;
+      z-index: 1;
+      padding: 24px 22px 20px;
+    }
+
+    .stream-modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .stream-modal-title {
+      margin: 0;
+      font-weight: 800;
+      font-size: 1.18rem;
+      letter-spacing: -0.02em;
+    }
+
+    .stream-modal-close {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: rgba(242,240,247,0.70);
+      font-size: 0.88rem;
+      transition: background 140ms ease, border-color 140ms ease, color 140ms ease;
+      flex: 0 0 auto;
+    }
+    .stream-modal-close:hover {
+      background: rgba(218,60,255,0.14);
+      border-color: rgba(218,60,255,0.28);
+      color: #fff;
+    }
+
+    .stream-modal-sub {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 0.90rem;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    .stream-list {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .stream-item {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      text-decoration: none;
+      color: var(--text);
+      transition:
+        background 140ms ease,
+        border-color 140ms ease,
+        transform 140ms ease;
+      cursor: pointer;
+    }
+    .stream-item:hover {
+      background: rgba(218,60,255,0.09);
+      border-color: rgba(218,60,255,0.26);
+      transform: translateX(3px);
+    }
+
+    .stream-item-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 11px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 36px;
+      font-size: 1.05rem;
+    }
+    .stream-item-icon i {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .stream-item:hover .stream-item-icon {
+      background: rgba(218,60,255,0.12);
+      border-color: rgba(218,60,255,0.28);
+    }
+
+    .stream-item-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+    .stream-item-name {
+      font-weight: 700;
+      font-size: 0.94rem;
+      color: rgba(242,240,247,0.96);
+      line-height: 1;
+    }
+    .stream-item-detail {
+      font-weight: 500;
+      font-size: 0.79rem;
+      color: rgba(242,240,247,0.46);
+      line-height: 1;
+    }
+
+    .stream-item-price {
+      font-weight: 800;
+      font-size: 1.0rem;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      white-space: nowrap;
+      flex: 0 0 auto;
+    }
+
+    .stream-item-arrow {
+      color: rgba(242,240,247,0.28);
+      font-size: 0.78rem;
+      flex: 0 0 auto;
+      transition: color 140ms ease, transform 140ms ease;
+    }
+    .stream-item:hover .stream-item-arrow {
+      color: rgba(218,60,255,0.75);
+      transform: translateX(2px);
+    }
+    /* ── END STREAMING SELECTOR MODAL ── */
+
     @media (max-width: 1100px){
       .products-grid{ grid-template-columns:repeat(2,1fr); }
       .testimonials-grid{ grid-template-columns:repeat(2,1fr); }
@@ -1742,20 +1907,20 @@ document.addEventListener('contextmenu', e => e.preventDefault());
 
         <div class="products-grid" role="list" aria-label="Available products">
 
-          <!-- Discord Nitro — unavailable -->
+          <!-- STREAMING ACCOUNTS CARD -->
           <article class="panel-card product-card" role="listitem" tabindex="0">
-            <h3 class="product-title">Discord Nitro</h3>
-            <p class="product-price">$4.99 - $24.99</p>
+            <h3 class="product-title">Streaming Accounts</h3>
+            <p class="product-price">From $0.06</p>
 
             <p class="product-description">
-              Unlock Discord Nitro (Boost Version) for 1 Month or 1 Year. One-time purchase, no subscription.
+              Lifetime access to premium streaming and software platforms — Netflix, Spotify, Disney+, and more.
             </p>
 
             <ul class="product-features">
-              <li><span class="checkmark"></span>Full Access to Discord Nitro</li>
-              <li><span class="checkmark"></span>Delivered as a Gift Link</li>
-              <li><span class="checkmark"></span>Eligible for Fast Delivery</li>
-              <li><span class="checkmark"></span>Exclusive Nitro Perks</li>
+              <li><span class="checkmark"></span>Lifetime Access on Most Plans</li>
+              <li><span class="checkmark"></span>9 Services Available</li>
+              <li><span class="checkmark"></span>Fast & Reliable Delivery</li>
+              <li><span class="checkmark"></span>Bulk Discounts Eligible</li>
             </ul>
 
             <div class="payment-icons-row" aria-label="Payment methods">
@@ -1765,19 +1930,18 @@ document.addEventListener('contextmenu', e => e.preventDefault());
               <div class="payment-icon"><i class="fa-brands fa-bitcoin"></i></div>
             </div>
 
-            <!-- RED unavailable badge -->
-            <div class="product-stock unavailable"><i class="fa-solid fa-xmark"></i> Unavailable</div>
+            <div class="product-stock"><i class="fa-solid fa-check"></i> In Stock</div>
 
-            <!-- Greyed-out buttons -->
-            <div class="product-buy-buttons">
-              <button type="button" class="btn-buy disabled" disabled>
-                1 Month <i class="fa-solid fa-arrow-right"></i>
-              </button>
-              <button type="button" class="btn-buy disabled" disabled>
-                1 Year <i class="fa-solid fa-arrow-right"></i>
-              </button>
-            </div>
+            <button
+              type="button"
+              class="btn-buy"
+              onclick="openStreamModal()"
+              aria-haspopup="dialog"
+            >
+              Buy Now <i class="fa-solid fa-arrow-right"></i>
+            </button>
           </article>
+          <!-- END STREAMING ACCOUNTS CARD -->
 
           <article class="panel-card product-card" role="listitem" tabindex="0">
             <h3 class="product-title">14 Server Boosts</h3>
@@ -2178,7 +2342,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
             <div class="footer-col">
               <h4>Best Sellers</h4>
               <ul>
-                <li><a href="#products">Discord Nitro</a></li>
+                <li><a href="#products">Streaming Accounts</a></li>
                 <li><a href="#products">Server Boosts</a></li>
                 <li><a href="#products">FiveM Ready Accounts</a></li>
                 <li><a href="https://enomen.one/shop">All Products</a></li>
@@ -2221,138 +2385,128 @@ document.addEventListener('contextmenu', e => e.preventDefault());
 
   </div>
 
-<!-- Nitro Unavailable Modal -->
-<style>
-  .enomen-modal-backdrop{
-    position:fixed;
-    inset:0;
-    background:rgba(5,5,10,0.75);
-    backdrop-filter:blur(6px);
-    z-index:9999;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
+  <!-- STREAMING SELECTOR MODAL -->
+  <div class="stream-backdrop" id="streamBackdrop" role="dialog" aria-modal="true" aria-labelledby="streamModalTitle">
+    <div class="stream-modal" id="streamModal">
+      <div class="stream-modal-inner">
+        <div class="stream-modal-head">
+          <h3 class="stream-modal-title" id="streamModalTitle">
+            <i class="fa-solid fa-play" style="background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;margin-right:8px;"></i>
+            Choose Streaming Service
+          </h3>
+          <button class="stream-modal-close" onclick="closeStreamModal()" aria-label="Close">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <p class="stream-modal-sub">Select a streaming platform below to view all services for that platform.</p>
 
-  .enomen-modal{
-    width:100%;
-    max-width:420px;
-    margin:18px;
-    border-radius:22px;
-    border:1px solid rgba(255,255,255,0.12);
-    background:linear-gradient(180deg, var(--panelA), var(--panelB));
-    box-shadow:0 20px 60px rgba(0,0,0,0.55);
-    position:relative;
-    overflow:hidden;
-  }
+        <div class="stream-list" role="list">
 
-  .enomen-modal::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:
-      radial-gradient(700px 260px at 50% -40%, rgba(218,60,255,0.25), transparent 60%);
-    pointer-events:none;
-  }
+          <a class="stream-item" href="https://enomen.mysellauth.com/product/netflix" target="_blank" rel="noopener noreferrer" role="listitem">
+            <div class="stream-item-icon"><i class="fa-solid fa-film"></i></div>
+            <div class="stream-item-info">
+              <span class="stream-item-name">Netflix</span>
+              <span class="stream-item-detail">Lifetime Access | In Stock</span>
+            </div>
+            <span class="stream-item-price">$0.25 - $5.49</span>
+            <i class="fa-solid fa-arrow-right stream-item-arrow"></i>
+          </a>
 
-  .enomen-modal-content{
-    position:relative;
-    padding:26px 24px 22px;
-    text-align:center;
-  }
+          <a class="stream-item" href="https://enomen.mysellauth.com/product/nba" target="_blank" rel="noopener noreferrer" role="listitem">
+            <div class="stream-item-icon"><i class="fa-solid fa-basketball"></i></div>
+            <div class="stream-item-info">
+              <span class="stream-item-name">NBA</span>
+              <span class="stream-item-detail">Lifetime Access | In Stock</span>
+            </div>
+            <span class="stream-item-price">$0.15</span>
+            <i class="fa-solid fa-arrow-right stream-item-arrow"></i>
+          </a>
 
-  .enomen-modal-icon{
-    width:54px;
-    height:54px;
-    border-radius:16px;
-    margin:0 auto 14px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:rgba(255,255,255,0.06);
-    border:1px solid rgba(255,255,255,0.12);
-    font-size:1.4rem;
-  }
+          <a class="stream-item" href="https://enomen.mysellauth.com/product/dazn" target="_blank" rel="noopener noreferrer" role="listitem">
+            <div class="stream-item-icon"><i class="fa-solid fa-circle-play"></i></div>
+            <div class="stream-item-info">
+              <span class="stream-item-name">DAZN</span>
+              <span class="stream-item-detail">Lifetime Access | In Stock</span>
+            </div>
+            <span class="stream-item-price">$0.30</span>
+            <i class="fa-solid fa-arrow-right stream-item-arrow"></i>
+          </a>
 
-  .enomen-modal-icon i{
-    background:var(--grad);
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-  }
+          <a class="stream-item" href="https://enomen.mysellauth.com/product/crunchyroll" target="_blank" rel="noopener noreferrer" role="listitem">
+            <div class="stream-item-icon"><i class="fa-solid fa-tv"></i></div>
+            <div class="stream-item-info">
+              <span class="stream-item-name">Crunchyroll</span>
+              <span class="stream-item-detail">Lifetime Access | In Stock</span>
+            </div>
+            <span class="stream-item-price">$0.06 – $0.09</span>
+            <i class="fa-solid fa-arrow-right stream-item-arrow"></i>
+          </a>
 
-  .enomen-modal h3{
-    margin:0 0 10px;
-    font-size:1.35rem;
-    font-weight:800;
-    letter-spacing:-0.02em;
-  }
+          <a class="stream-item" href="https://enomen.mysellauth.com/product/ipvanish" target="_blank" rel="noopener noreferrer" role="listitem">
+            <div class="stream-item-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="stream-item-info">
+              <span class="stream-item-name">IPVanish</span>
+              <span class="stream-item-detail">Lifetime Access | In Stock</span>
+            </div>
+            <span class="stream-item-price">$0.65</span>
+            <i class="fa-solid fa-arrow-right stream-item-arrow"></i>
+          </a>
 
-  .enomen-modal p{
-    margin:0 0 18px;
-    color:var(--muted);
-    font-size:0.96rem;
-    line-height:1.55;
-  }
+          <a class="stream-item" href="https://enomen.mysellauth.com/product/disney" target="_blank" rel="noopener noreferrer" role="listitem">
+            <div class="stream-item-icon"><i class="fa-solid fa-wand-sparkles"></i></div>
+            <div class="stream-item-info">
+              <span class="stream-item-name">Disney+</span>
+              <span class="stream-item-detail">Lifetime Packages | In Stock</span>
+            </div>
+            <span class="stream-item-price">$0.09 – $0.19</span>
+            <i class="fa-solid fa-arrow-right stream-item-arrow"></i>
+          </a>
 
-  .enomen-modal button{
-    width:100%;
-    border-radius:999px;
-    padding:13px 16px;
-    border:1px solid rgba(255,255,255,0.12);
-    background:var(--grad);
-    color:#fff;
-    font-weight:700;
-    font-size:0.95rem;
-    cursor:pointer;
-    transition:opacity 160ms ease, transform 160ms ease;
-  }
+          <a class="stream-item" href="https://enomen.mysellauth.com/product/capcut" target="_blank" rel="noopener noreferrer" role="listitem">
+            <div class="stream-item-icon"><i class="fa-solid fa-scissors"></i></div>
+            <div class="stream-item-info">
+              <span class="stream-item-name">CapCut Pro</span>
+              <span class="stream-item-detail">Lifetime Access | In Stock</span>
+            </div>
+            <span class="stream-item-price">$0.49</span>
+            <i class="fa-solid fa-arrow-right stream-item-arrow"></i>
+          </a>
 
-  .enomen-modal button:hover{
-    opacity:0.92;
-    transform:translateY(-1px);
-  }
-</style>
+          <a class="stream-item" href="https://enomen.mysellauth.com/product/spotify" target="_blank" rel="noopener noreferrer" role="listitem">
+            <div class="stream-item-icon"><i class="fa-brands fa-spotify"></i></div>
+            <div class="stream-item-info">
+              <span class="stream-item-name">Spotify Premium</span>
+              <span class="stream-item-detail">1 Year Access | In Stock</span>
+            </div>
+            <span class="stream-item-price">$2.49</span>
+            <i class="fa-solid fa-arrow-right stream-item-arrow"></i>
+          </a>
 
-<div class="enomen-modal-backdrop" id="nitroNotice" style="display:none;">
-  <div class="enomen-modal" role="dialog" aria-modal="true">
-    <div class="enomen-modal-content">
-      <div class="enomen-modal-icon">
-        <i class="fa-solid fa-circle-exclamation"></i>
+          <a class="stream-item" href="https://enomen.mysellauth.com/product/paramount" target="_blank" rel="noopener noreferrer" role="listitem">
+            <div class="stream-item-icon"><i class="fa-solid fa-star"></i></div>
+            <div class="stream-item-info">
+              <span class="stream-item-name">Paramount+</span>
+              <span class="stream-item-detail">Lifetime Access | In Stock</span>
+            </div>
+            <span class="stream-item-price">$0.10</span>
+            <i class="fa-solid fa-arrow-right stream-item-arrow"></i>
+          </a>
+
+        </div>
       </div>
-
-      <h3>Discord Nitro Unavailable</h3>
-      <p>
-        Discord Nitro products are permanently unavailable.<br>
-        All other products are unaffected.
-      </p>
-
-      <button onclick="closeNitroModal()">Got it</button>
     </div>
   </div>
-</div>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    if (!sessionStorage.getItem("nitroNoticeSeen")) {
-      document.getElementById("nitroNotice").style.display = "flex";
-      sessionStorage.setItem("nitroNoticeSeen", "true");
-    }
-  });
-
-  function closeNitroModal(){
-    document.getElementById("nitroNotice").style.display = "none";
-  }
-</script>
-<!-- modal end -->
+  <!-- END STREAMING SELECTOR MODAL -->
 
   <script>
+    /* ── Navbar scroll ── */
     const navbar = document.querySelector('.navbar');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 40) navbar.classList.add('scrolled');
       else navbar.classList.remove('scrolled');
     });
 
+    /* ── Smooth scroll anchors ── */
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e){
         const id = this.getAttribute('href');
@@ -2363,6 +2517,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       });
     });
 
+    /* ── FAQ accordion ── */
     document.querySelectorAll('.faq-q').forEach(q => {
       q.addEventListener('click', () => {
         const item = q.closest('.faq-item');
@@ -2386,6 +2541,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       });
     });
 
+    /* ── Fade-in sections ── */
     const sections = document.querySelectorAll('.fade-in-section');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -2398,6 +2554,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
 
     sections.forEach(section => observer.observe(section));
 
+    /* ── Resources dropdown ── */
     const resourcesTrigger  = document.getElementById('resources-trigger');
     const resourcesDropdown = document.getElementById('resources-dropdown');
     const resourcesWrap     = document.getElementById('resources-nav-item');
@@ -2422,11 +2579,31 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     resourcesWrap.addEventListener('mouseleave', scheduleClose);
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') scheduleClose();
+      if (e.key === 'Escape') {
+        scheduleClose();
+        closeStreamModal();
+      }
     });
 
     resourcesDropdown.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', () => scheduleClose());
+    });
+
+    /* ── Streaming selector modal ── */
+    const streamBackdrop = document.getElementById('streamBackdrop');
+
+    function openStreamModal() {
+      streamBackdrop.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeStreamModal() {
+      streamBackdrop.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    streamBackdrop.addEventListener('click', (e) => {
+      if (e.target === streamBackdrop) closeStreamModal();
     });
   </script>
 </body>
