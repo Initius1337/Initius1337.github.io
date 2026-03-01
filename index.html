@@ -11,7 +11,7 @@
 
   <meta content="Enomen | #1 Leading Marketplace" property="og:title" />
   <meta content="The modern digital marketplace designed for simplicity and reliability—focused on what actually matters." property="og:description" />
-  <meta content="#B074D4" data-react-helmet="true" name="theme-color" />
+  <meta content="#DA3CFF" data-react-helmet="true" name="theme-color" />
   <meta property="og:image" content="https://enomen.one/resources/enomenn.svg" />
   <meta property="og:url" content="https://enomen.one" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -36,22 +36,28 @@ document.addEventListener('contextmenu', e => e.preventDefault());
 
   <style>
     :root{
-      --brand:#A96BD0;
+      --brand:#DA3CFF;
       --brandHot:#DA3CFF;
       --grad: linear-gradient(90deg, var(--brandHot), var(--brand));
       --bgHero0:#05050A;
       --bgHero1:#070712;
-      --bgStatic:#0a0a0b;
+      --bgStatic:#0a0a0a;
       --text:#F2F0F7;
       --muted:rgba(242,240,247,0.72);
       --muted2:rgba(242,240,247,0.52);
       --border:rgba(255,255,255,0.10);
-      --panelA:#151520;
-      --panelB:#101018;
+      /* Updated card colors to match haunt.gg style */
+      --panelA:#161616;
+      --panelB:#161616;
+      --panelBorder:rgba(255,255,255,0.07);
       --ok:#39d98a;
       --radius:26px;
       --radiusSm:18px;
       --container:1120px;
+      /* Glow effect variables */
+      --glowColor: rgba(218, 60, 255, 0.15);
+      --glowBorder: rgba(218, 60, 255, 0.38);
+      --glowShadow: 0 0 22px rgba(218, 60, 255, 0.14), 0 0 44px rgba(218, 60, 255, 0.07), 0 4px 24px rgba(0,0,0,0.5);
     }
 
     *{ box-sizing:border-box; }
@@ -64,7 +70,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       color:var(--text);
       background:
         radial-gradient(1200px 700px at 50% -10%, rgba(218,60,255,0.16), transparent 58%),
-        radial-gradient(900px 600px at 15% 20%, rgba(169,107,208,0.12), transparent 60%),
+        radial-gradient(900px 600px at 15% 20%, rgba(218,60,255,0.12), transparent 60%),
         radial-gradient(900px 650px at 85% 60%, rgba(218,60,255,0.08), transparent 62%),
         linear-gradient(180deg, var(--bgHero0), var(--bgHero1));
       overflow-x:hidden;
@@ -100,6 +106,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       z-index:2;
     }
 
+    /* ─────────── NAVBAR ─────────── */
     .navbar{
       position:fixed;
       top:0;
@@ -439,6 +446,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       filter:blur(5px) opacity(0.28);
     }
 
+    /* ─────────── HERO ─────────── */
     .hero{
       position:relative;
       min-height:100vh;
@@ -457,7 +465,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       z-index:0;
       background:
         radial-gradient(1000px 650px at 50% 20%, rgba(218,60,255,0.18), transparent 55%),
-        radial-gradient(950px 700px at 70% 55%, rgba(169,107,208,0.14), transparent 58%),
+        radial-gradient(950px 700px at 70% 55%, rgba(218,60,255,0.14), transparent 58%),
         radial-gradient(850px 620px at 20% 70%, rgba(218,60,255,0.07), transparent 60%);
       filter:saturate(1.03);
     }
@@ -490,7 +498,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       left:0; right:0;
       bottom:-1px;
       height:180px;
-      background:linear-gradient(180deg, rgba(10,10,11,0.00), var(--bgStatic));
+      background:linear-gradient(180deg, rgba(10,10,10,0.00), var(--bgStatic));
       z-index:1;
       pointer-events:none;
     }
@@ -556,11 +564,16 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       gap:9px;
       padding:10px 12px;
       border-radius:14px;
-      background:linear-gradient(180deg, #12121a, #0f0f15);
-      border:1px solid rgba(255,255,255,0.10);
+      background:#161616;
+      border:1px solid rgba(255,255,255,0.08);
       font-weight:650;
       font-size:0.86rem;
       color:rgba(242,240,247,0.88);
+      transition: border-color 400ms ease, box-shadow 400ms ease;
+    }
+    .badge:hover {
+      border-color: var(--glowBorder);
+      box-shadow: var(--glowShadow);
     }
     .badge i{
       font-size:0.92rem;
@@ -652,30 +665,39 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       font-weight:500;
     }
 
+    /* ─────────── HAUNT.GG STYLE CARDS ─────────── */
+    /* Base panel card — flat dark, subtle border, slow glow on hover */
     .panel-card{
       border-radius:var(--radiusSm);
-      border:1px solid rgba(255,255,255,0.10);
-      background:linear-gradient(180deg, var(--panelA), var(--panelB));
+      border:1px solid rgba(255,255,255,0.07);
+      background: #161616;
       position:relative;
       overflow:hidden;
-      transition:transform 160ms ease, border-color 160ms ease;
+      transition:
+        border-color 500ms ease,
+        box-shadow 500ms ease,
+        transform 300ms ease;
     }
-    .panel-card::before{
+
+    /* Translucent purple wash across the whole card on hover */
+    .panel-card::after{
       content:"";
       position:absolute;
       inset:0;
+      background: rgba(218,60,255,0.06);
+      opacity:0;
+      transition: opacity 500ms ease;
       pointer-events:none;
-      background:
-        radial-gradient(900px 360px at 50% -40%, rgba(218,60,255,0.22), transparent 62%),
-        radial-gradient(900px 360px at 10% 120%, rgba(169,107,208,0.12), transparent 65%);
-      opacity:0.88;
       z-index:0;
     }
-    .panel-card > *{ position:relative; z-index:1; }
+    .panel-card:hover::after{
+      opacity:1;
+    }
 
     .panel-card:hover{
       transform:translateY(-2px);
-      border-color:rgba(218,60,255,0.20);
+      border-color: var(--glowBorder);
+      box-shadow: var(--glowShadow);
     }
 
     .grid-3{
@@ -726,6 +748,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       font-weight:500;
     }
 
+    /* ─────────── PRODUCT CARDS ─────────── */
     .products-grid{
       display:grid;
       grid-template-columns:repeat(3, 1fr);
@@ -825,7 +848,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       height:34px;
       border-radius:12px;
       border:1px solid rgba(255,255,255,0.10);
-      background:#12121a;
+      background:#1a1a1a;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -898,12 +921,13 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       display:none;
     }
 
+    /* ─────────── CATALOG CTA ─────────── */
     .catalog-cta{
       margin-top:18px;
       padding:24px;
       border-radius:22px;
-      border:1px solid rgba(255,255,255,0.10);
-      background:linear-gradient(180deg, var(--panelA), var(--panelB));
+      border:1px solid rgba(255,255,255,0.07);
+      background: #161616;
       position:relative;
       overflow:hidden;
       display:flex;
@@ -911,17 +935,29 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       justify-content:space-between;
       gap:18px;
       flex-wrap:wrap;
+      transition: border-color 500ms ease, box-shadow 500ms ease;
     }
     .catalog-cta::before{
+      display: none;
+    }
+    .catalog-cta::after{
       content:"";
       position:absolute;
       inset:0;
+      background: rgba(218,60,255,0.06);
+      opacity:0;
+      transition: opacity 500ms ease;
       pointer-events:none;
-      background:radial-gradient(900px 340px at 50% -45%, rgba(218,60,255,0.24), transparent 62%);
-      opacity:0.88;
       z-index:0;
     }
-    .catalog-cta > *{ position:relative; z-index:1; }
+    .catalog-cta:hover::after{
+      opacity:1;
+    }
+    .catalog-cta > * { position: relative; z-index: 1; }
+    .catalog-cta:hover {
+      border-color: var(--glowBorder);
+      box-shadow: var(--glowShadow);
+    }
 
     .catalog-title{
       margin:0;
@@ -954,15 +990,17 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       transform:translateY(-1px);
     }
 
+    /* ─────────── COMPARE ─────────── */
     .compare{
       display:grid;
       grid-template-columns:1fr auto 1fr;
       gap:0;
       border-radius:var(--radius);
       overflow:hidden;
-      border:1px solid rgba(255,255,255,0.10);
-      background:linear-gradient(180deg, var(--panelA), var(--panelB));
+      border:1px solid rgba(255,255,255,0.07);
+      background: #161616;
       position:relative;
+      transition: border-color 500ms ease, box-shadow 500ms ease;
     }
     .product-buy-buttons {
       display: flex;
@@ -975,16 +1013,14 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     }
 
     .compare::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-      background:
-        radial-gradient(950px 360px at 18% 0%, rgba(218,60,255,0.22), transparent 62%),
-        radial-gradient(950px 360px at 88% 100%, rgba(169,107,208,0.12), transparent 65%);
-      opacity:0.88;
-      z-index:0;
+      display: none;
     }
+
+    .compare:hover {
+      border-color: var(--glowBorder);
+      box-shadow: var(--glowShadow);
+    }
+
     .compare > *{ position:relative; z-index:1; }
 
     .compare-side{
@@ -992,15 +1028,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       min-height:360px;
     }
 
-    .compare-side.left::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-      background:radial-gradient(900px 420px at 40% 25%, rgba(218,60,255,0.15), transparent 62%);
-      opacity:0.88;
-      z-index:0;
-    }
+    .compare-side.left::after{ display: none; }
     .compare-side.left{ position:relative; }
     .compare-side.left > *{ position:relative; z-index:1; }
 
@@ -1048,7 +1076,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
 
     .scorebar.dim > span{
       width:60%;
-      background:linear-gradient(90deg, rgba(218,60,255,0.28), rgba(169,107,208,0.16));
+      background:linear-gradient(90deg, rgba(218,60,255,0.28), rgba(218,60,255,0.16));
       filter:none;
     }
 
@@ -1067,8 +1095,8 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       gap:12px;
       padding:14px 14px;
       border-radius:18px;
-      border:1px solid rgba(255,255,255,0.10);
-      background:#12121a;
+      border:1px solid rgba(255,255,255,0.07);
+      background:#1a1a1a;
       color:rgba(242,240,247,0.82);
       font-weight:650;
       font-size:0.93rem;
@@ -1109,9 +1137,9 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       align-items:center;
       justify-content:center;
       padding:0 14px;
-      background:rgba(255,255,255,0.03);
-      border-left:1px solid rgba(255,255,255,0.10);
-      border-right:1px solid rgba(255,255,255,0.10);
+      background:rgba(255,255,255,0.02);
+      border-left:1px solid rgba(255,255,255,0.07);
+      border-right:1px solid rgba(255,255,255,0.07);
     }
     .vs{
       width:58px;
@@ -1126,6 +1154,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       letter-spacing:-0.02em;
     }
 
+    /* ─────────── TESTIMONIALS ─────────── */
     .testimonials-grid{
       display:grid;
       grid-template-columns:repeat(3, 1fr);
@@ -1187,62 +1216,110 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       font-size:0.82rem;
     }
 
+    /* ─────────── FAQ (haunt.gg style + centered text) ─────────── */
     .faq{
       max-width:860px;
       margin:0 auto;
       display:flex;
       flex-direction:column;
-      gap:12px;
+      gap:10px;
     }
 
     .faq-item{
-      border-radius:14px;
-      overflow:hidden;
+      background: #161616;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.07);
+      position: relative;
+      /* Slow glow transition — only on hover */
+      transition:
+        border-color 500ms ease,
+        box-shadow 500ms ease;
     }
 
-    .faq-q{
-      position:relative;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:12px;
-      padding:16px 16px;
-      font-weight:700;
-      font-size:1.0rem;
-      cursor:pointer;
-      user-select:none;
-      text-align:center;
+    .faq-item::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(218,60,255,0.06);
+      opacity: 0;
+      transition: opacity 500ms ease;
+      pointer-events: none;
+      z-index: 0;
     }
-    .faq-q span:first-child{
-      flex:1;
-      text-align:center;
-    }
-    .faq-q .icon{
-      position:absolute;
-      right:16px;
-      opacity:0.75;
-      transition:transform 160ms ease;
+    .faq-item:hover::after {
+      opacity: 1;
     }
 
-    .faq-a{
-      max-height:0;
-      overflow:hidden;
-      transition:max-height 260ms ease, padding 260ms ease;
-      padding:0 16px;
-      color:var(--muted);
-      line-height:1.65;
-      font-weight:500;
-      font-size:0.95rem;
-      text-align:center;
-    }
-    .faq-item.open .faq-a{
-      max-height:240px;
-      padding:0 16px 16px 16px;
-    }
-    .faq-item.open .faq-q .icon{
-      transform:rotate(180deg);
+    .faq-item:hover {
+      border-color: var(--glowBorder);
+      box-shadow: var(--glowShadow);
     }
 
+    .faq-question {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 18px 22px;
+      cursor: pointer;
+      color: #EEE;
+      font-weight: 600;
+      font-size: 1.0rem;
+      transition: background-color 300ms ease;
+      user-select: none;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      gap: 12px;
+    }
+
+    .faq-question .faq-arrow {
+      /* Always purple, positioned to the right */
+      position: absolute;
+      right: 22px;
+      color: var(--brand);
+      font-size: 0.82rem;
+      flex-shrink: 0;
+      transition: transform 0.35s cubic-bezier(0.34, 1.3, 0.64, 1);
+    }
+
+    .faq-question:hover {
+      background-color: rgba(255,255,255,0.02);
+    }
+
+    .faq-question.active .faq-arrow {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      padding: 0 22px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+      color: rgba(242,240,247,0.60);
+      font-size: 0.95rem;
+      line-height: 1.65;
+      font-weight: 500;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .faq-answer.open {
+      max-height: 300px;
+      padding: 0 22px 18px 22px;
+    }
+
+    .faq-answer a {
+      color: #DA3CFF;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    .faq-answer a:hover {
+      color: #c020e0;
+    }
+
+    /* ─────────── JOIN US ─────────── */
     .join-us-surface{
       border-radius:var(--radius);
       padding:28px;
@@ -1253,11 +1330,9 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       overflow:hidden;
     }
 
-    .join-us-surface.panel-card::before{
-      background:
-        radial-gradient(1000px 420px at 50% -45%, rgba(218,60,255,0.26), transparent 62%),
-        radial-gradient(900px 380px at 15% 120%, rgba(169,107,208,0.14), transparent 65%);
-      opacity:0.90;
+    /* Override panel-card::before which is now hidden — ensure join section still looks good */
+    .join-us-surface.panel-card {
+      background: #161616;
     }
 
     .pill{
@@ -1266,7 +1341,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       gap:8px;
       padding:8px 12px;
       border-radius:999px;
-      background:#12121a;
+      background:#1a1a1a;
       border:1px solid rgba(255,255,255,0.10);
       font-weight:650;
       font-size:0.86rem;
@@ -1308,7 +1383,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       padding:9px 12px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,0.10);
-      background:#12121a;
+      background:#1a1a1a;
       font-weight:650;
       font-size:0.86rem;
     }
@@ -1340,23 +1415,16 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       transform:translateY(-1px);
     }
 
+    /* ─────────── FOOTER ─────────── */
     .site-footer{
       padding:70px 0 44px 0;
-      border-top:1px solid rgba(255,255,255,0.10);
+      border-top:1px solid rgba(255,255,255,0.07);
       position:relative;
       overflow:hidden;
     }
 
     .site-footer::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-      background:
-        radial-gradient(1000px 420px at 50% 0%, rgba(218,60,255,0.12), transparent 65%),
-        radial-gradient(900px 380px at 20% 100%, rgba(169,107,208,0.08), transparent 68%);
-      opacity:0.82;
-      z-index:0;
+      display: none;
     }
 
     .footer-inner{
@@ -1401,7 +1469,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       gap:9px;            
       padding:11px 15px;     
       border-radius:999px;
-      background:#12121a;
+      background:#1a1a1a;
       border:1px solid rgba(255,255,255,0.10);
       font-weight:600;    
       font-size:0.9rem;   
@@ -1411,7 +1479,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     .footer-pill:hover{
       transform:translateY(-1px);
       border-color:rgba(218,60,255,0.18);
-      background:#151520;
+      background:#1e1e1e;
     }
     .footer-pill.primary{
       background:var(--grad);
@@ -1485,7 +1553,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       font-weight:600;
       font-size:0.86rem;
       padding-top:18px;
-      border-top:1px solid rgba(255,255,255,0.08);
+      border-top:1px solid rgba(255,255,255,0.07);
     }
 
     .pay{
@@ -1498,7 +1566,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       width:36px;height:36px;
       border-radius:14px;
       border:1px solid rgba(255,255,255,0.10);
-      background:#12121a;
+      background:#1a1a1a;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -1515,7 +1583,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       transform:translateY(0);
     }
 
-    /* ── STREAMING SELECTOR MODAL ── */
+    /* ─────────── STREAMING MODAL ─────────── */
     .stream-backdrop {
       position: fixed;
       inset: 0;
@@ -1540,8 +1608,8 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       width: 100%;
       max-width: 520px;
       border-radius: 24px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: linear-gradient(180deg, #151520, #101018);
+      border: 1px solid rgba(255,255,255,0.10);
+      background: #161616;
       box-shadow: 0 24px 72px rgba(0,0,0,0.65), 0 4px 16px rgba(0,0,0,0.45);
       position: relative;
       overflow: hidden;
@@ -1553,12 +1621,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     }
 
     .stream-modal::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: radial-gradient(800px 280px at 50% -35%, rgba(218,60,255,0.28), transparent 58%);
-      z-index: 0;
+      display: none;
     }
 
     .stream-modal-inner {
@@ -1623,19 +1686,21 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       gap: 13px;
       padding: 12px 14px;
       border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      background: #1a1a1a;
       text-decoration: none;
       color: var(--text);
       transition:
-        background 140ms ease,
-        border-color 140ms ease,
-        transform 140ms ease;
+        background 400ms ease,
+        border-color 400ms ease,
+        box-shadow 400ms ease,
+        transform 200ms ease;
       cursor: pointer;
     }
     .stream-item:hover {
-      background: rgba(218,60,255,0.09);
-      border-color: rgba(218,60,255,0.26);
+      background: rgba(218,60,255,0.06);
+      border-color: rgba(218,60,255,0.30);
+      box-shadow: 0 0 16px rgba(218,60,255,0.08), 0 2px 12px rgba(0,0,0,0.4);
       transform: translateX(3px);
     }
 
@@ -1644,7 +1709,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       height: 36px;
       border-radius: 11px;
       border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.05);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1703,8 +1768,8 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       color: rgba(218,60,255,0.75);
       transform: translateX(2px);
     }
-    /* ── END STREAMING SELECTOR MODAL ── */
 
+    /* ─────────── RESPONSIVE ─────────── */
     @media (max-width: 1100px){
       .products-grid{ grid-template-columns:repeat(2,1fr); }
       .testimonials-grid{ grid-template-columns:repeat(2,1fr); }
@@ -1723,8 +1788,8 @@ document.addEventListener('contextmenu', e => e.preventDefault());
       .vs-wrap{
         border-left:none;
         border-right:none;
-        border-top:1px solid rgba(255,255,255,0.10);
-        border-bottom:1px solid rgba(255,255,255,0.10);
+        border-top:1px solid rgba(255,255,255,0.07);
+        border-bottom:1px solid rgba(255,255,255,0.07);
         padding:14px 0;
       }
       .nav-links{ justify-content:flex-start; }
@@ -1880,7 +1945,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
           <div class="panel-card card feature-card" tabindex="0">
             <div class="iconbox"><i class="fa-solid fa-shield"></i></div>
             <h3>Safe & Secure</h3>
-            <p>Our payment processors use military-grade encryption to keep your payments and personal information safe.</p>
+            <p>Enomen utilizes military-grade encryption to keep your payments and personal information safe.</p>
           </div>
 
           <div class="panel-card card feature-card" tabindex="0">
@@ -1900,7 +1965,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
 
     <section id="products" class="section fade-in-section" aria-label="Products">
       <div class="container">
-        <h2 class="section-title"><span class="accent" data-glow="Best">Best</span> Sellers</h2>
+        <h2 class="section-title">Our <span class="accent" data-glow="Best">Best</span> Sellers</h2>
         <p class="section-sub">
           See what Enomen customers keep coming back for. This is just a fraction of what we offer.
         </p>
@@ -1913,7 +1978,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
             <p class="product-price">From $0.06</p>
 
             <p class="product-description">
-              Lifetime access to premium streaming and software platforms — Netflix, Spotify, Disney+, and more.
+              Lifetime access to premium streaming and software platforms — Netflix, Spotify, Disney+, and more. Pick your service below.
             </p>
 
             <ul class="product-features">
@@ -1941,7 +2006,6 @@ document.addEventListener('contextmenu', e => e.preventDefault());
               Buy Now <i class="fa-solid fa-arrow-right"></i>
             </button>
           </article>
-          <!-- END STREAMING ACCOUNTS CARD -->
 
           <article class="panel-card product-card" role="listitem" tabindex="0">
             <h3 class="product-title">14 Server Boosts</h3>
@@ -2117,17 +2181,17 @@ document.addEventListener('contextmenu', e => e.preventDefault());
         <div class="testimonials-grid" role="list" aria-label="Customer testimonials">
           <article class="panel-card testimonial" role="listitem" tabindex="0">
             <div class="t-head">
-              <p class="t-name">Aki</p>
+              <p class="t-name">Starzy</p>
               <div class="stars" aria-hidden="true">
                 <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
               </div>
             </div>
             <p class="t-text">
-              "Monthly nitro from here is way cheaper than anywhere else I found. Been using it for months, no problems at all."
+              "Not sure how they profit with their pricing. Not to mention they actually help you with issues unlike other stores."
             </p>
             <div class="t-foot">
-              <span class="t-pill">Discord Nitro</span>
-              <span class="t-date">2 weeks ago</span>
+              <span class="t-pill">Streaming Accounts</span>
+              <span class="t-date">1 day ago</span>
             </div>
           </article>
 
@@ -2174,55 +2238,57 @@ document.addEventListener('contextmenu', e => e.preventDefault());
         </p>
 
         <div class="faq" role="list" aria-label="FAQ items">
-          <div class="panel-card faq-item" role="listitem">
-            <div class="faq-q" role="button" tabindex="0" aria-expanded="false">
-              <span>How long does delivery take?</span>
-              <span class="icon">▼</span>
+
+          <div class="faq-item" role="listitem">
+            <div class="faq-question" tabindex="0">
+              Is this a secure marketplace?
+              <i class="fas fa-chevron-down faq-arrow"></i>
             </div>
-            <div class="faq-a">
-              Some products are eligible for automatic delivery after payment is confirmed, but others may not be. Orders are delivered by our staff team for products such as Discord Nitro, Streaming & VPN Accounts, and Server Boosts. In rare cases, processing or high traffic may cause slight delays, but our team monitors all orders closely to ensure you receive your product as quickly as possible. If you notice any delay, our support staff is always ready to assist you immediately.
+            <div class="faq-answer">
+              Absolutely. Not only do we deliver your products promptly, but we also prioritize your security. Enomen utilizes military-grade encryption to ensure that your transactions and personal information are protected at all times. Additionally, we offer full purchase protection on all orders, giving you peace of mind from checkout to delivery. To see what we collect and how we protect your data, please review our <a href="https://enomen.one/terms#data-collection">Privacy Policy</a>.
             </div>
           </div>
 
-          <div class="panel-card faq-item" role="listitem">
-            <div class="faq-q" role="button" tabindex="0" aria-expanded="false">
-              <span>What if a product doesn't work?</span>
-              <span class="icon">▼</span>
+          <div class="faq-item" role="listitem">
+            <div class="faq-question" tabindex="0">
+              What does the lifetime warranty cover?
+              <i class="fas fa-chevron-down faq-arrow"></i>
             </div>
-            <div class="faq-a">
-              If your product does not work, we urge you to reach out to our <a href="https://enomen.one/support" style="color: #B074D4;">support team</a>. We will obtain order details, and we will replace the product, provide an alternative, or guide you through troubleshooting steps. Our team ensures you will get what you paid for.
-            </div>
-          </div>
-
-          <div class="panel-card faq-item" role="listitem">
-            <div class="faq-q" role="button" tabindex="0" aria-expanded="false">
-              <span>What payment methods do you accept?</span>
-              <span class="icon">▼</span>
-            </div>
-            <div class="faq-a">
-              You can utilize our <a href="https://enomen.one/payments" style="color: #B074D4;">Payment Methods Guide</a> to view a list of accepted payment methods. Anything besides Bitcoin (BTC) and Litecoin (LTC) requires a purchase ticket in our <a href="https://enomen.one/discord" style="color: #B074D4;">Discord Server</a>. Rest assured, alternative payment methods are processed quickly by our staff members and there is minimal wait time. If you have any additional questions regarding payment methods, feel free to contact our support team.
+            <div class="faq-answer">
+              Dependent on the product, our lifetime warranty typically covers issues such as account login issues, lockouts, and two factor authentication issues. If you encounter any of these problems, our support team will work with you to resolve the issue, which may include replacing the product or providing an alternative solution. Please note that the warranty does not cover user-related issues such as password changes, sharing account details with unauthorized parties, or violations of our <a href="https://enomen.one/terms">Terms of Service</a>. For more information on warranty coverage, please contact our <a href="https://enomen.one/terms">Support Team</a>.
             </div>
           </div>
 
-          <div class="panel-card faq-item" role="listitem">
-            <div class="faq-q" role="button" tabindex="0" aria-expanded="false">
-              <span>What is your refund policy?</span>
-              <span class="icon">▼</span>
+          <div class="faq-item" role="listitem">
+            <div class="faq-question" tabindex="0">
+              What payment methods do you accept?
+              <i class="fas fa-chevron-down faq-arrow"></i>
             </div>
-            <div class="faq-a">
-              For many products, we do not offer refunds once a purchase is completed. However, we understand that issues can arise, such as delivery errors, broken links, or defective products. In such cases, our team will work with you to resolve the issue, including replacing the product or providing an alternative solution. Our goal is to make sure you get full value from every purchase.
+            <div class="faq-answer">
+              You can utilize our <a href="https://enomen.one/payments">Payment Methods Guide</a> to view a list of accepted payment methods. Anything besides Bitcoin (BTC) and Litecoin (LTC) requires a purchase ticket in our <a href="https://enomen.one/discord">Discord Server</a>. Rest assured, alternative payment methods are processed quickly by our staff members and there is minimal wait time. If you have any additional questions regarding payment methods, feel free to contact our support team.
             </div>
           </div>
 
-          <div class="panel-card faq-item" role="listitem">
-            <div class="faq-q" role="button" tabindex="0" aria-expanded="false">
-              <span>How can I contact customer support?</span>
-              <span class="icon">▼</span>
+          <div class="faq-item" role="listitem">
+            <div class="faq-question" tabindex="0">
+              Do you offer reseller or bulk pricing?
+              <i class="fas fa-chevron-down faq-arrow"></i>
             </div>
-            <div class="faq-a">
-              You can read our <a href="https://enomen.one/support" style="color: #B074D4;">Support Guide</a> for step-by-step instructions on how to receive support. We've made it easier than ever to reach Enomen staff, whether through live chat or our state-of-the-art Discord ticket system. Whether you need assistance with receiving your product, troubleshooting an issue, or understanding your purchase options, we've got you covered!
+            <div class="faq-answer">
+              We typically offer bulk discounts for purchases of 10 or more of the same product, but we also offer custom reseller pricing for larger orders. For bulk pricing, information is available in the product description. If you're interested in reseller pricing or have a large order, please contact our <a href="https://enomen.one/discord">Support Team</a> with details about the products and quantities you're interested in purchasing, and we'll be happy to provide you with a custom quote if the description does not include information.
             </div>
           </div>
+
+          <div class="faq-item" role="listitem">
+            <div class="faq-question" tabindex="0">
+              How can I contact customer support?
+              <i class="fas fa-chevron-down faq-arrow"></i>
+            </div>
+            <div class="faq-answer">
+              You can read our <a href="https://enomen.one/support">Support Guide</a> for step-by-step instructions on how to receive support. We've made it easier than ever to reach Enomen staff, whether through live chat or our state-of-the-art Discord ticket system. Whether you need assistance with receiving your product, troubleshooting an issue, or understanding your purchase options, we've got you covered!
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -2255,8 +2321,8 @@ document.addEventListener('contextmenu', e => e.preventDefault());
             </p>
           </div>
 
-          <div aria-label="Discord preview" style="border-radius:22px;border:1px solid rgba(255,255,255,0.10);background:#12121a;padding:16px;">
-            <div style="border-radius:18px;border:1px solid rgba(255,255,255,0.10);background:#0d0d12;padding:14px;">
+          <div aria-label="Discord preview" style="border-radius:22px;border:1px solid rgba(255,255,255,0.08);background:#1a1a1a;padding:16px;">
+            <div style="border-radius:18px;border:1px solid rgba(255,255,255,0.08);background:#111111;padding:14px;">
               <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;">
                 <div style="display:flex;align-items:center;gap:6px;">
                   <span style="width:9px;height:9px;border-radius:999px;background:#39d98a;display:inline-block;"></span>
@@ -2291,21 +2357,21 @@ document.addEventListener('contextmenu', e => e.preventDefault());
               </div>
 
               <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px;">
-                <div style="border-radius:16px;border:1px solid rgba(255,255,255,0.10);background:rgba(255,255,255,0.04);padding:12px;text-align:left;">
+                <div style="border-radius:16px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03);padding:12px;text-align:left;">
                   <div style="font-weight:750;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:1.15rem;">
                     3,053
                   </div>
                   <div style="color:rgba(242,240,247,0.50);font-size:0.78rem;">Total Members</div>
                 </div>
 
-                <div style="border-radius:16px;border:1px solid rgba(255,255,255,0.10);background:rgba(255,255,255,0.04);padding:12px;text-align:left;">
+                <div style="border-radius:16px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03);padding:12px;text-align:left;">
                   <div style="font-weight:750;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:1.15rem;">
-                    2,000+
+                    5,000+
                   </div>
                   <div style="color:rgba(242,240,247,0.50);font-size:0.78rem;">Items Sold</div>
                 </div>
 
-                <div style="border-radius:16px;border:1px solid rgba(255,255,255,0.10);background:rgba(255,255,255,0.04);padding:12px;text-align:left;">
+                <div style="border-radius:16px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03);padding:12px;text-align:left;">
                   <div style="font-weight:750;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:1.15rem;">
                     1.3
                   </div>
@@ -2413,7 +2479,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
           </a>
 
           <a class="stream-item" href="https://enomen.mysellauth.com/product/nba" target="_blank" rel="noopener noreferrer" role="listitem">
-            <div class="stream-item-icon"><i class="fa-solid fa-basketball"></i></div>
+            <div class="stream-item-icon"><i class="fa-solid fa-trophy"></i></div>
             <div class="stream-item-info">
               <span class="stream-item-name">NBA</span>
               <span class="stream-item-detail">Lifetime Access | In Stock</span>
@@ -2423,7 +2489,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
           </a>
 
           <a class="stream-item" href="https://enomen.mysellauth.com/product/dazn" target="_blank" rel="noopener noreferrer" role="listitem">
-            <div class="stream-item-icon"><i class="fa-solid fa-circle-play"></i></div>
+            <div class="stream-item-icon"><i class="fa-solid fa-bolt"></i></div>
             <div class="stream-item-info">
               <span class="stream-item-name">DAZN</span>
               <span class="stream-item-detail">Lifetime Access | In Stock</span>
@@ -2433,7 +2499,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
           </a>
 
           <a class="stream-item" href="https://enomen.mysellauth.com/product/crunchyroll" target="_blank" rel="noopener noreferrer" role="listitem">
-            <div class="stream-item-icon"><i class="fa-solid fa-tv"></i></div>
+            <div class="stream-item-icon"><i class="fa-solid fa-clapperboard"></i></div>
             <div class="stream-item-info">
               <span class="stream-item-name">Crunchyroll</span>
               <span class="stream-item-detail">Lifetime Access | In Stock</span>
@@ -2518,25 +2584,29 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     });
 
     /* ── FAQ accordion ── */
-    document.querySelectorAll('.faq-q').forEach(q => {
-      q.addEventListener('click', () => {
-        const item = q.closest('.faq-item');
-        const open = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(item => {
+      const question = item.querySelector('.faq-question');
+      const answer   = item.querySelector('.faq-answer');
 
-        document.querySelectorAll('.faq-item.open').forEach(el => {
-          el.classList.remove('open');
-          const btn = el.querySelector('.faq-q');
-          if (btn) btn.setAttribute('aria-expanded', 'false');
+      question.addEventListener('click', () => {
+        const isOpen = answer.classList.contains('open');
+
+        // Close all others
+        document.querySelectorAll('.faq-item .faq-answer.open').forEach(openAnswer => {
+          if (openAnswer !== answer) {
+            openAnswer.classList.remove('open');
+            openAnswer.previousElementSibling.classList.remove('active');
+          }
         });
 
-        item.classList.toggle('open', !open);
-        q.setAttribute('aria-expanded', String(!open));
+        answer.classList.toggle('open', !isOpen);
+        question.classList.toggle('active', !isOpen);
       });
 
-      q.addEventListener('keydown', (e) => {
+      question.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          q.click();
+          question.click();
         }
       });
     });
